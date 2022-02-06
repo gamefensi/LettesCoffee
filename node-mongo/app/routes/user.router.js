@@ -1,10 +1,47 @@
-module.exports = function(app) {
+const express = require("express")
+const router = express.Router()
+const User = require("../models/user.model")
 
-    var users = require('../controllers/user.controller.js');
+const { getToken, COOKIE_OPTIONS, getRefreshToken } = require("../../authenticate")
 
-    app.post('/api/user', users.createUser);
-    app.get('/api/user/:id', users.getUser); 
-    app.get('/api/users', users.users);
-    app.put('/api/user', users.updateUser);
-    app.delete('/api/user/:id', users.deleteUser);
-}
+router.post("/signup", (req, res, next) => {
+  //Verify that first name is not empty
+
+  const { email, password, firstName } = req.body;
+
+  if (!email || !password || !firstName) {
+    res.statusCode = 500
+    res.send({
+      name: "fieldsEmptyError",
+      message: "The first name is required",
+    })
+  } else {
+
+    User.register(
+      new User({ username: req.body.username }),
+      req.body.password,
+      (err, user) => {
+        if (err) {
+          res.statusCode = 500
+          res.send(err)
+        } else {
+          user.firstName = req.body.firstName
+          user.lastName = req.body.lastName || ""
+          const token = getToken({ _id: user._id })
+          const refreshToken = getRefreshToken({ _id: user._id })
+          user.refreshToken.push({ refreshToken })
+          user.save((err, user) => {
+            if (err) {
+              res.statusCode = 500
+              res.send(err)
+            } else {
+              res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
+              res.send({ success: true, token })
+            }
+          })
+        }
+      }
+    )
+  }
+
+})

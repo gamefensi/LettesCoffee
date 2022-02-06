@@ -9,6 +9,12 @@ if (process.env.NODE_ENV !== "production") {
 }
 require("./utils/connectdb")
 
+require("./app/strategies/JwtStrategy");
+require("./app/strategies/LocalStrategy");
+require("./authenticate")
+
+const userRouter = require('./app/routes/user.router.js')
+
 const app = express();
 
 app.use(bodyParser.json())
@@ -34,11 +40,15 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
+app.use(passport.initialize())
+
+app.use("/users", userRouter)
+
 app.get('/', function (req, res) {
     res.send({ status: "success" })
 })
 
-// require('./app/routes/user.router.js')(app);
+
 
 // Create a Server
 const server = app.listen(process.env.PORT || 8081, function () {

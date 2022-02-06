@@ -1,10 +1,49 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const UserSchema = new mongoose.Schema({
-    firstName: {type: String, required: true},
-    lastName: {type: String, required: true},
-    email: {type: String, required: true},
-    password: {type: String, required: true, minlength: 6}
+const passportLocalMongoose = require("passport-local-mongoose");
+
+//Store refresh tokens
+const Session = new Schema({
+    refreshToken: {
+        type: String,
+        default: "",
+    },
+})
+
+const User = new Schema({
+    firstName: {
+        type: String, 
+        required: true
+    },
+    lastName: String,
+    email: {
+        type: String, 
+        required: true
+    },
+    password: {
+        type: String, 
+        required: true, 
+        minlength: 6
+    },
+    authStrategy: {
+        type: String,
+        default: "local",
+    },
+    //array of refresh tokens to support sign in from multiple devices 
+    refreshToken: {
+        type: [Session],
+    },
 });
 
-module.exports = mongoose.model('User', UserSchema);
+//Remove refreshToken from the response, so we don't expose users refresh tokens when we serialize the model and send data in the API response
+User.set("toJSON", {
+    transform: function (doc, ret, options) {
+        delete ret.refreshToken
+        return ret
+    },
+})
+
+User.plugin(passportLocalMongoose)
+
+module.exports = mongoose.model('User', User);
