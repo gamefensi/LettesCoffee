@@ -13,18 +13,12 @@ const Session = new Schema({
 
 const User = new Schema({
     firstName: {
-        type: String, 
-        required: true
+      type: String,
+      default: "",
     },
-    lastName: String,
-    email: {
-        type: String, 
-        required: true
-    },
-    password: {
-        type: String, 
-        required: true, 
-        minlength: 6
+    lastName: {
+      type: String,
+      default: "",
     },
     authStrategy: {
         type: String,
