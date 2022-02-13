@@ -9,7 +9,7 @@ const {
   COOKIE_OPTIONS, 
   getRefreshToken,
   verifyUser,
-  } = require("../../authenticate");
+  } = require("../authenticate");
 
 const { reset } = require("nodemon");
 

@@ -10,11 +10,11 @@ if (process.env.NODE_ENV !== "production") {
 }
 require("./utils/connectdb")
 
-require("./app/strategies/JwtStrategy");
-require("./app/strategies/LocalStrategy");
+require("./strategies/JwtStrategy");
+require("./strategies/LocalStrategy");
 require("./authenticate")
 
-const userRouter = require('./app/routes/user.router.js')
+const userRouter = require('./routes/user.router.js')
 
 const app = express();
 
