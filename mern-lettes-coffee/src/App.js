@@ -5,6 +5,7 @@ import Loader from "./Loader"
 import Login from "./Login"
 import Register from "./Register"
 import Welcome from "./Welcome"
+import Footer from "./Footer"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavMenu from "./Nav"
 import { Container } from "react-bootstrap"
@@ -74,6 +75,7 @@ function App() {
           <Tabs.Expander />
         </Tabs>
       </Card>
+      <Footer />
     </Container>
 
   ) : userContext.token ? (

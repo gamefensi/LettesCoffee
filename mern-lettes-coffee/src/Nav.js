@@ -13,20 +13,24 @@ export default function NavMenu(props) {
       <Router>
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container fluid>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <img
             src="images/logo/logo_bw_inverted.png"
             width="50"
             height="50"
             className="d-inline-block align-top"
             alt="Lette's Coffee logo"
-          /> Lette's Coffee
+          />
+          Lette's Coffee
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="#features">About</Nav.Link>
+            <Nav.Link href="#pricing">Roast Schedule</Nav.Link>
+            <Nav.Link href="#features">Offerings</Nav.Link>
+            <Nav.Link href="#pricing">Contact</Nav.Link>
             <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
