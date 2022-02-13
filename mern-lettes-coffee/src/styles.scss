@@ -2,10 +2,31 @@
 @import "~@blueprintjs/core/lib/css/blueprint.css";
 @import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
 
+
+////////// Variables //////////
+
+// light font color (WHEAT)
+$fcl-l: #f5deb3;
+
+//dark font color (CHARCOAL)
+$fcl-d: #364135;
+
+//light bg color (LIGHT PURPLE)
+$bgcl-l: #A897B9;
+
+//dark bg color (PURPLE)
+$bgcl-d: #47226B;
+
+//light offwhite
+$ofw: #f8f9fa;
+
+//////////////////////////////
+
 body {
   margin: 0 auto;
-  /* max-width: 1600px; */
+  max-width: 1600px;
   background-color: #A897B9;
+  color: $fcl-d;
 }
 
 .auth-form {
@@ -23,4 +44,29 @@ body {
 .user-actions {
   display: flex;
   flex-direction: column;
+}
+
+footer {
+  background: $bgcl-d;
+  padding-top: 25px;
+  padding-left: 10px;
+  padding-bottom: 25px;
+  .footer-inner-container {
+    color: $fcl-l;
+  }
+  .icons a {
+    padding-right: 10px;
+    color: $fcl-l;
+  }
+  .page-links ul li {
+    margin-bottom: 8px;
+    text-decoration: none;
+    list-style: none;
+    a {
+      color: $fcl-l;
+    }
+  }
+  .disclaimer {
+    color: $fcl-l;
+  }
 }

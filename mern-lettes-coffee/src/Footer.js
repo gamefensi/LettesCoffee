@@ -1,5 +1,9 @@
 
 import { Row, Container, Col } from "reactstrap"
+import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css";
+import { faFacebook, faTwitter, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 export default function Footer(props) {
@@ -7,33 +11,40 @@ export default function Footer(props) {
     <footer className="footer">
       <Container className="footer-inner-container">
         <Row>
-          <Col className="col">
-            <h3 className="title">Customer Service Support:</h3>
-            <p>1-877-GET-CAFE<br />info@lettescoffee.com</p>
-            <div className="icons">
-              <a href="https://www.facebook.com/groups/marlettescoffee" target="_blank">
-                <img src="images/social media icons/fb.svg" />
-              </a>
-              <a href="https://twitter.com/EVFY_inc" target="_blank">
-                <img src="images/social media icons/twitter.svg" />
-              </a>
-              <a href="https://www.linkedin.com/company/evfy" target="_blank">
-                <img src="images/social media icons/linkedIn.svg" />
-              </a>
-              <a href="https://www.instagram.com/evfy_inc/" target="_blank">
-                <img src="images/social media icons/IG.svg" />
-              </a>
-            </div>
-          </Col>
-          <Col className="col">
-            <h3 className="title">Where to Find Us:</h3>
-            <p>Marlette's Coffee<br />1142 Via Valle Vista<br />Escondido, CA 92029</p>
-          </Col>
-          <Col className="col logo">
+          <Col className="col-sm-3 logo">
             <a href="/">
               <img src="images/logo/logo_bw.png" width="150" />
             </a>
           </Col>
+          <Col className="page-links col-sm-3 d-flex align-items-end">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/About">About</a></li>
+              <li><a href="/Schedule">Roast Schedule</a></li>
+              <li><a href="/Offerings">Offerings</a></li>
+              <li><a href="/Contact">Contact</a></li>
+            </ul>
+          </Col>
+          <Col className="col-sm-3">
+            <h3 className="title">Questions?</h3>
+            <p>1-877-GET-CAFE<br />info@lettescoffee.com</p>
+            <div className="icons">
+              <a href="https://www.facebook.com/groups/marlettescoffee" target="_blank">
+                <FontAwesomeIcon icon={faFacebook} />
+              </a>
+              <a href="https://twitter.com/EVFY_inc" target="_blank">
+                <FontAwesomeIcon icon={faTwitter} />
+              </a>
+              <a href="https://www.linkedin.com/company/evfy" target="_blank">
+                <FontAwesomeIcon icon={faLinkedin} />
+              </a>
+              <a href="" target="_blank">
+                <FontAwesomeIcon icon={faInstagram} />
+              </a>
+            </div>
+          </Col>
+
+
         </Row>
       </Container>
 
