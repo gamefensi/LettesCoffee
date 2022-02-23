@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css";
 import { faFacebook, faTwitter, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from './images/logo/logo_bw.png';
 
 
 export default function Footer(props) {
@@ -13,7 +14,7 @@ export default function Footer(props) {
         <Row>
           <Col className="col-sm-3 logo">
             <a href="/">
-              <img src="images/logo/logo_bw.png" width="150" />
+              <img src={logo} width="150" />
             </a>
           </Col>
           <Col className="page-links col-sm-3 d-flex align-items-end">

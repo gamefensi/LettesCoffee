@@ -1,102 +1,61 @@
-import React from "react";
+import React, {Component} from "react";
 import { Container } from "reactstrap";
+import { Milestones } from "../data/milestones";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSeedling } from "@fortawesome/free-solid-svg-icons";
+import logo from "../images/logo/logo_bw.png"
 
 export default function About(props) {
 
-
   return (
-  <div id="history" className="">
-    <h2 className="h1 text-center text-danger pt-5 aos-init aos-animate" data-aos="fade-up">Our History</h2>
-    <div className="timeline">
-      <ul>
-        <li data-aos="fade-up" className="has_thumbnail aos-init aos-animate">
-          <div className="content">
-            <h5 className="entry-title">2007</h5>
-            <p>Ritual opens a kiosk in the Bayview, tucked inside the equally revolutionary Flora Grubb Gardens</p>
-            <img width="600" height="400" src="" className="" alt="" loading="lazy" srcset="" sizes="(max-width: 600px) 100vw, 600px" />
-          </div>
-        </li>
-        <li data-aos="fade-up" className="has_thumbnail aos-init">
-          <div className="content">
-            <p>Under coffee buyer Ryan Brown, Ritual begins its relationship-based sourcing model</p>
-            <img width="441" height="590" src="" className="" alt="" loading="lazy" />
-          </div>
-        </li>
-        <li data-aos="fade-up" className="has_thumbnail aos-init">
-          <div className="content">
-            <h5 className="entry-title">2006</h5>
-            <p>We start roasting on a little 5 kilo Probat in the back of the Valencia Street café.</p>
-            <img width="460" height="600" src=""/>
-          </div>
-        </li>
-        <li data-aos="fade-up" className="has_thumbnail aos-init">
-          <div className="content">
-            <h5 className="entry-title">2005</h5>
-            <p>We open our first café on Valencia Street and introduce San Francisco to the style of coffee that it’s now known for. By day 3, we already have a line to the corner.</p>
-            <img width="600" height="400" src="" />
-          </div>
-        </li>
-        <div style="clear:both;"></div>
-      </ul>
-    </div>
-  </div>
+    <Container fluid id="aboutUs">
+      <h1 className="h1 text-center py-5">Our Story</h1>
+      <div className="desc-box">
+      <img src={logo} alt="logo-bw" width="100px" className="pb-5"></img>
+        <p><strong>Lette's Coffee</strong> is a micro-roastery based out of Escondido, CA. The hobby-turned-business all started on a stove top skillet in the hands of the husband and wife duo: Marlette and Jesse Vater. As they advanced their skills and machinery, they decided that everyone deserves an Effortless, Fresh, and Divine coffee experience. That's why <strong>Lette's Coffee</strong> only offers a roast-to-order menu with recently harvested selections from across the world.</p>
+        
+      </div>
+      <Timeline />
+    </Container>
   )
 }
 
-class Timeline extends React.Component {
+class Timeline extends Component {
   constructor(props) {
     super(props);
-    this.state = [
-      {
-        id: 1,
-        date: "October 2018",
-        description: "We started our journey by purchasing our very first roaster - a Genecafe CBR-101. Here we began experimenting on roast times and flavors. These early days helped spark our passion for roasting",
-        pic: ""
-      },
-      {
-        id: 2,
-        date: "March 2019",
-        description: "As we became more serious, we wanted more precision in a professional drum coffee roaster. We decided that the Aillio bullet was the best choice for reaching the next level of coffee roasting. ",
-        pic: ""
-      },
-      {
-        id: 3,
-        date: "April 2019",
-        description: "We moved to Escondido, CA where we set up our official roasting operations",
-        pic: ""
-      },
-      {
-        id: 4,
-        date: "November 2019",
-        description: "We created our Facebook group, Marlette's Coffee Lounge, where close friends and family can share their love of coffee, view our offerings, and place orders for our upcoming roasting dates.",
-        pic: ""
-      },
-      {
-        id: 5,
-        date: "September 2020",
-        description: "Our talented close friend helped us design our very first logo. We loved it!",
-        pic: ""
-      },
-      {
-        id: 6,
-        date: "November 2021",
-        description: "We created our first branded merchandise available to buy in the store.",
-        pic: ""
-      },
-    ]
-
+    this.state = {
+      Milestones: Milestones
+    }
   }
 
   render() {
 
-    return(
-        <div id="history" className="">
-          <h2 className="h1 text-center text-danger pt-5 aos-init aos-animate" data-aos="fade-up">Our History</h2>
-          {/* <div className="timeline"> */}
-
+    return (
+      <Container fluid id="history" className="">
+        <h2 className="h1 text-center pt-5 aos-init aos-animate" data-aos="fade-up">Our History</h2>
+        <div className="timeline d-flex" style={{margin:"auto",width:"100%"}}>
+          <ul>
+            <CreateTimeline events={this.state.Milestones} />
+            <div style={{clear:"both"}}></div>
+            <FontAwesomeIcon icon={faSeedling} />
+          </ul>
         </div>
+      </Container>
     )
   }
 }
 
 // create new timelines
+const CreateTimeline = (props) => {
+  return (
+    props.events.map(event => (
+      <li data-aos="fade-up" className="has_thumbnail aos-init" key={event.id}>
+        <div className="content ">
+          <h5 className="entry-title">{event.date}</h5>
+          <p>{event.description}</p>
+          <img style={{width:"400px", height:"300px"}} src={event.pic} alt={event.alt} loading="lazy"/>
+        </div>
+      </li>
+    ))
+  )
+}

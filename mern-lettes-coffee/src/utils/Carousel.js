@@ -6,18 +6,22 @@ import {
   CarouselIndicators,
   CarouselCaption
 } from 'reactstrap';
+import img1 from '../images/stock-coffee-bg.jpg';
+import img2 from '../images/stockBeans3.jpg';
+import img3 from '../images/stockBeans4.jpg';
+
 
 const items = [
   {
-    src: 'images/stock-coffee-bg.jpg',
+    src: `${img1}`,
     altText: 'Slide 1'
   },
   {
-    src: 'images/stockBeans3.jpg',
+    src: `${img2}`,
     altText: 'Slide 2'
   },
   {
-    src: 'images/stockBeans4.jpg',
+    src: `${img3}`,
     altText: 'Slide 3'
   }
 ];
@@ -71,7 +75,7 @@ class MainCarousel extends Component {
           key={item.src}
         >
           <img 
-            src={item.src} 
+            src={item.src}
             alt={item.altText} 
             className="carousel-img d-block w-100"
           />

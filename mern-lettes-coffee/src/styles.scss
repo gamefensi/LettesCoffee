@@ -1,7 +1,6 @@
-@import "~normalize.css";
-@import "~@blueprintjs/core/lib/css/blueprint.css";
-@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
-
+@import '~normalize.css';
+@import '~@blueprintjs/core/lib/css/blueprint.css';
+@import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
 
 ////////// Variables //////////
 
@@ -12,61 +11,160 @@ $fcl-l: #f5deb3;
 $fcl-d: #364135;
 
 //light bg color (LIGHT PURPLE)
-$bgcl-l: #A897B9;
+$bgcl-l: #a897b9;
 
 //dark bg color (PURPLE)
-$bgcl-d: #47226B;
+$bgcl-d: #47226b;
 
 //light offwhite
-$ofw: #f8f9fa;
+$ofw: #f0f0f0;
 
 //////////////////////////////
 
 body {
-  margin: 0 auto;
-  max-width: 1600px;
-  background-color: #A897B9;
-  color: $fcl-d;
+	margin: 0 auto;
+	max-width: 1600px;
+	background-color: #a897b9;
+	color: $fcl-d;
 }
 
 .auth-form {
-  margin-top: 10px;
+	margin-top: 10px;
 }
 
 .loader {
-  margin: 100px auto;
+	margin: 100px auto;
 }
 
 .user-details {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 .user-actions {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 footer {
-  background: $bgcl-d;
-  padding-top: 25px;
-  padding-left: 10px;
-  padding-bottom: 25px;
-  .footer-inner-container {
-    color: $fcl-l;
+	background: $bgcl-d;
+	padding-top: 25px;
+	padding-left: 10px;
+	padding-bottom: 25px;
+	.footer-inner-container {
+		color: $fcl-l;
+	}
+	.icons a {
+		padding-right: 10px;
+		color: $fcl-l;
+	}
+	.page-links ul li {
+		margin-bottom: 8px;
+		text-decoration: none;
+		list-style: none;
+		a {
+			color: $fcl-l;
+		}
+	}
+	.disclaimer {
+		color: $fcl-l;
+	}
+}
+.desc-box {
+  margin: auto;
+  width: 80%;
+  padding: 100px;
+  background: rgba(139, 152, 164, 0.233) none no-repeat scroll 0 0;
+  text-align: center;
+  p {
+    font-size: 1.2rem;
+    line-height: 24pt;
   }
-  .icons a {
-    padding-right: 10px;
-    color: $fcl-l;
-  }
-  .page-links ul li {
-    margin-bottom: 8px;
-    text-decoration: none;
-    list-style: none;
-    a {
-      color: $fcl-l;
-    }
-  }
-  .disclaimer {
-    color: $fcl-l;
-  }
+}
+
+//About Us
+
+#aboutUs {
+	background-color: $ofw;
+	color: $fcl-d;
+
+	#history .timeline {
+		ul {
+			li {
+				list-style: none;
+				position: relative;
+				width: 50%;
+				padding: 20px 40px;
+
+				.has_thumbnail {
+					padding: 20px;
+					list-style: none;
+
+					.entry-title {
+					}
+				}
+			}
+			li:nth-child(odd) {
+				float: left;
+				text-align: right;
+				clear: both;
+
+				img {
+					position: absolute;
+					top: 0;
+					left: 115%;
+					margin: 0;
+					padding: 8px 16px;
+				}
+
+				:before {
+					right: -34px;
+				}
+			}
+		}
+	}
+
+	.timeline ul li:nth-child(even):before,
+	.timeline ul li:nth-child(odd):before {
+		content: '';
+		position: absolute;
+		width: 64px;
+		height: 64px;
+		top: 0;
+		background: url('./images/about-us/leaf.png') no-repeat fixed center;
+		object-fit: contain;
+	}
+}
+
+@media (min-width: 992px) {
+	.timeline ul li:nth-child(odd) img {
+		max-height: 240px;
+		object-fit: contain;
+		object-position: center left;
+	}
+}
+@media (max-width: 991.98px) {
+	.timeline ul li:nth-child(even):before,
+	.timeline ul li:nth-child(odd):before {
+		top: 8px;
+		left: -11px;
+	}
+
+  .timeline ul li:nth-child(even) img, .timeline ul li:nth-child(odd) img {
+    top: 2.5rem;
+    left: inherit;
+    width: 28vw;
+    height: 30vw;
+    height: calc(200px - 10vw);
+    object-fit: cover;
+    object-position: center center;
+    right: 0;
+    z-index: -1;
+    opacity: .8;
+    padding: 0;
+}
+}
+
+
+img {
+	vertical-align: middle;
 }

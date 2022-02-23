@@ -1,7 +1,7 @@
 import { Button, Card } from "@blueprintjs/core"
 import React, { useCallback, useContext, useEffect } from "react"
 import { UserContext } from "./context/UserContext"
-import Loader from "./Loader"
+import Loader from "./utils/Loader"
 
 const Welcome = () => {
   const [userContext, setUserContext] = useContext(UserContext)
@@ -75,7 +75,7 @@ const Welcome = () => {
   ) : !userContext.details ? (
     <Loader />
   ) : (
-    <Card elevation="1">
+    <Card className="my-5" elevation="1">
       <div className="user-details">
         <div>
           <p>
