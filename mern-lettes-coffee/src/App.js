@@ -1,4 +1,3 @@
-import { Card, Tab, Tabs } from "@blueprintjs/core"
 import { useCallback, useContext, useEffect, useState } from "react"
 import { UserContext } from "./context/UserContext"
 import Loader from "./Loader"
@@ -8,19 +7,24 @@ import Welcome from "./Welcome"
 import Footer from "./Footer"
 import NavMenu from "./Nav"
 import { Container,Button,Modal,Row,Col } from "react-bootstrap"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import MainCarousel from './utils/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.scss';
 
 function App() {
+  AOS.init();
   //local state to determine active tab
-  const [currentTab, setCurrentTab] = useState("login")
   const [userContext, setUserContext] = useContext(UserContext)
   const [show, setShow] = useState(false);
+  const [show1, setShow1] = useState(false);
 
   const handleClose = () => setShow(false);
+  const handleClose1 = () => setShow1(false);
   const handleShow = () => setShow(true);
+  const handleShow1 = () => setShow1(true);
 
   //verifyUser enclosed w/in useCallback to avoid redeclaration when component re-renders
   //will be called on page load (useEffect) and will make call to /refreshToken
@@ -75,19 +79,20 @@ function App() {
       <MainCarousel />
       <div class="p-5 mb-4 bg-light rounded-3">
         <Container fluid className="py-5">
-          <h1 class="display-5 fw-bold">Welcome. Grab a seat and stay a while.</h1>
-          <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+          <h1 class="display-5 fw-bold">Welcome. Grab a seat and stay awhile.</h1>
+          <p class="col-md-8 fs-4">While you're here, explore our selection of roast-to-order coffees from around the world. Taste fresh, Ethiopia, Colombia, Kenya, Honduras and Indonesia.</p>
           <Row>
-            <Col className="col-1">
-            <Button variant="primary" className="btn my-4 btn-lg" onClick={handleShow}>
-            Sign In
-          </Button>
-            </Col>
-            <Col className="col-1">
-            <Button variant="primary" className="btn my-4 btn-lg" onClick={handleShow}>
+          <Col className="col-sm-12 col-lg-2">
+            <Button variant="success" className="btn my-4 btn-lg px-5" onClick={handleShow1}>
             Register
           </Button>
             </Col>
+            <Col className="col-sm-12 col-lg-3">
+            <Button variant="primary" className="btn my-4 btn-lg px-5 ms-lg-4" onClick={handleShow}>
+            Sign In
+          </Button>
+            </Col>
+
 
           </Row>
         </Container>
@@ -102,29 +107,17 @@ function App() {
         <Modal.Body>
           <Login />
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
+        <Modal.Footer style={{display:"none"}}>
         </Modal.Footer>
       </Modal>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show1} onHide={handleClose1}>
         <Modal.Header closeButton>
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Register />
         </Modal.Body>
-        <Modal.Footer>
-          {/* <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
+        <Modal.Footer style={{display:"none"}}>
         </Modal.Footer>
       </Modal>
       <Footer />
