@@ -1,6 +1,8 @@
 @import '~normalize.css';
 @import '~@blueprintjs/core/lib/css/blueprint.css';
 @import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import 'react-calendar/dist/Calendar.css';
 
 ////////// Variables //////////
 
@@ -75,9 +77,24 @@ footer {
   padding: 100px;
   background: rgba(139, 152, 164, 0.233) none no-repeat scroll 0 0;
   text-align: center;
+  @include media-breakpoint-down(md) {
+    width:100%;
+    padding:50px;
+  }
+  @include media-breakpoint-down(sm) {
+    padding:10px;
+  }
   p {
     font-size: 1.2rem;
     line-height: 24pt;
+    @include media-breakpoint-down(md) {
+      font-size:1.1rem;
+      line-height:20pt;
+    }
+    @include media-breakpoint-down(sm) {
+      font-size:1rem;
+      line-height: 18pt;
+    }
   }
 }
 
@@ -86,85 +103,184 @@ footer {
 #aboutUs {
 	background-color: $ofw;
 	color: $fcl-d;
+}
 
-	#history .timeline {
-		ul {
-			li {
-				list-style: none;
-				position: relative;
-				width: 50%;
-				padding: 20px 40px;
 
-				.has_thumbnail {
-					padding: 20px;
-					list-style: none;
-
-					.entry-title {
-					}
-				}
+.timeline {
+	position: relative;
+	margin: 0 auto;
+	padding: 0;
+	width: 1000px;
+	&:before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		width: 3px;
+		height: 100%;
+		background: $ofw;
+	}
+	ul {
+		padding: 0;
+		margin: 0;
+		li {
+			list-style: none;
+			position: relative;
+			width: 50%;
+			padding: 20px 40px;
+			@include media-breakpoint-up(lg) {
+				min-height: 260px;
 			}
-			li:nth-child(odd) {
+      
+			&:nth-child(odd) {
 				float: left;
 				text-align: right;
 				clear: both;
-
+				&:before {
+					content: '';
+					position: absolute;
+					width: 64px;
+					height: 64px;
+					top: 0;
+					right: -34px;
+					background: url('./images/about-us/grow.png') no-repeat scroll 50%;
+          background-size: 50px;
+				}
 				img {
 					position: absolute;
 					top: 0;
-					left: 115%;
+					left: 105%;
 					margin: 0;
 					padding: 8px 16px;
+					@include media-breakpoint-up(lg) {
+						max-height: 260px;
+						object-fit: contain;
+						object-position: center left;
+					}
+          @include media-breakpoint-up(md) {
+						max-height: 180px;
+          }
 				}
-
-				:before {
-					right: -34px;
+			}
+			&:nth-child(even) {
+				float: right;
+				text-align: left;
+				clear: both;
+				&:before {
+					content: '';
+					position: absolute;
+					width: 64px;
+					height: 64px;
+					top: 0;
+					left: -31px;
+					background: url('./images/about-us/grow.png') no-repeat scroll 50%;
+          background-size: 50px;
+        }
+				img {
+					position: absolute;
+					top: 0;
+					right: 105%;
+					margin: 0;
+					padding: 8px 16px;
+          @include media-breakpoint-up(xl) {
+						max-height: 300px;
+          }
+					@include media-breakpoint-up(lg) {
+						max-height: 260px;
+						object-fit: contain;
+						object-position: center right;
+					}
+          @include media-breakpoint-up(md) {
+						max-height: 180px;
+          }
 				}
+			}
+			.content {
+				padding-bottom: 20px;
 			}
 		}
 	}
+}
 
-	.timeline ul li:nth-child(even):before,
-	.timeline ul li:nth-child(odd):before {
-		content: '';
-		position: absolute;
-		width: 64px;
-		height: 64px;
-		top: 0;
-		background: url('./images/about-us/leaf.png') no-repeat fixed center;
-		object-fit: contain;
+@include media-breakpoint-down(lg) {
+	.timeline {
+		width: 100%;
 	}
 }
 
-@media (min-width: 992px) {
-	.timeline ul li:nth-child(odd) img {
-		max-height: 240px;
-		object-fit: contain;
-		object-position: center left;
+@include media-breakpoint-down(md) {
+	.timeline {
+		width: 100%;
+		&:before {
+			left: 20px;
+			height: 100%;
+		}
+		ul {
+			li {
+				.content {
+					padding-left: 10px;
+				}
+			}
+			li:nth-child(odd),
+			li:nth-child(even) {
+				width: 100%;
+				text-align: left;
+				padding-left: 50px;
+				padding-right: 16px;
+				&:before {
+					top: 8px;
+					left: -11px;
+				}
+				img {
+					top: 2.5rem;
+					left: inherit;
+					width: 28vw;
+					height: 30vw;
+					height: calc(200px - 10vw);
+					object-fit: cover;
+					object-position: center center;
+					right: 0;
+					z-index: -1;
+					opacity: .8;
+					padding: 0;
+				}
+			}
+			li.has_thumbnail {
+				padding-right: 30vw !important;
+			}
+		}
 	}
 }
-@media (max-width: 991.98px) {
-	.timeline ul li:nth-child(even):before,
-	.timeline ul li:nth-child(odd):before {
-		top: 8px;
-		left: -11px;
-	}
 
-  .timeline ul li:nth-child(even) img, .timeline ul li:nth-child(odd) img {
-    top: 2.5rem;
-    left: inherit;
-    width: 28vw;
-    height: 30vw;
-    height: calc(200px - 10vw);
-    object-fit: cover;
-    object-position: center center;
-    right: 0;
-    z-index: -1;
-    opacity: .8;
-    padding: 0;
+//react calendar
+#roastSchedule {
+
+  h2.h1 {
+    text-align: center;
+    margin-top: 50px;
+  }
+
 }
-}
-
-
-img {
-	vertical-align: middle;
+.react-calendar {
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  padding:50px;
+  background-color:$ofw;
+  width:100%;
+  @include media-breakpoint-up(md) {
+    width: 80%;
+  }
+  @include media-breakpoint-up(lg) {
+    width: 60%;
+  }
+  @include media-breakpoint-up(xl) {
+    width: 50%;
+  }
+  
+  button.react-calendar__navigation__label {
+    span {
+      font-weight: bold;
+      font-size: 18pt
+    }
+  }
 }

@@ -3,7 +3,7 @@ import Footer from "./Footer"
 import { Container, Nav, Navbar } from "react-bootstrap"
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';     
 import './styles.scss';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
