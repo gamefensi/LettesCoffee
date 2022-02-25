@@ -8,16 +8,19 @@ import Welcome from "./Welcome"
 import Loader from "./utils/Loader"
 
 
+
 export default function Home(props) {
   //local state to determine active tab
   const [userContext, setUserContext] = useContext(UserContext)
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
 
+
   const handleClose = () => setShow(false);
   const handleClose1 = () => setShow1(false);
   const handleShow = () => setShow(true);
   const handleShow1 = () => setShow1(true);
+
 
   //verifyUser enclosed w/in useCallback to avoid redeclaration when component re-renders
   //will be called on page load (useEffect) and will make call to /refreshToken

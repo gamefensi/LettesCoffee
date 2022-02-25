@@ -3,8 +3,7 @@ import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  CarouselIndicators,
-  CarouselCaption
+  CarouselIndicators
 } from 'reactstrap';
 import img1 from '../images/stock-coffee-bg.jpg';
 import img2 from '../images/stockBeans3.jpg';

@@ -47,6 +47,10 @@ body {
 	flex-direction: column;
 }
 
+#cartLink:hover {
+  text-decoration: none;
+}
+//Footer
 footer {
 	background: $bgcl-d;
 	padding-top: 25px;
@@ -282,5 +286,16 @@ footer {
       font-weight: bold;
       font-size: 18pt
     }
+  }
+}
+button, select {
+  font-size: 16pt;
+}
+//Schedule > Roast Table
+
+#coffeeTable {
+  background-color: $ofw;
+  tr td {
+    vertical-align: middle;
   }
 }
