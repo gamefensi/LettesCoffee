@@ -15,7 +15,8 @@ export default function CoffeeTable(props) {
             <th>Cupping Score</th>
             <th>Roast Levels</th>
             <th>Tasting Notes</th>
-            <th>Price (12oz/24oz)</th>
+            {/* NOTE TO SELF: update later with 24oz */}
+            <th>Price (12oz)</th>
             <th>Weight</th>
             <th>QTY</th>
           </tr>
@@ -43,7 +44,7 @@ const CreateRows = (props) => {
       <td>{item.cupping_score}</td>
       <td>{item.roast_level}</td>
       <td>{item.tasting_notes}</td>
-      <td>${item.price12}/${item.price24}</td>
+      <td>${item.price12}</td>
       <td style={{minWidth:'150px'}} className="align-middle">
         <select id="weight" className='form-select ' name="weight" aria-label='select weight' >
           <option>Select option</option>

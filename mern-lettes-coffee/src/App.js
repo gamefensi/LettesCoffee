@@ -1,46 +1,35 @@
 import Home from "./Home"
 import Footer from "./Footer"
-import { Container, Nav, Navbar } from "react-bootstrap"
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import './styles.scss';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState, useEffect } from 'react';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Offerings from './pages/Offerings';
 import Schedule from './pages/Schedule';
 import Cart from "./pages/Cart";
-import invLogo from './images/logo/logo_bw_inverted.png'
 import {Coffee} from './data/coffeelist';
+import { Container, Nav, Navbar } from "react-bootstrap"
+import { Button, ListGroupItem } from "reactstrap";
+import {LinkContainer} from "react-router-bootstrap"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import './styles.scss';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useState} from 'react';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import invLogo from './images/logo/logo_bw_inverted.png'
+
 
 function App() {
   AOS.init();
-  const coffeeList = {Coffee}
   const [cart, setCart] = useState([])
-  const [cartTotal, setCartTotal] = useState(0);
+  const [inventory, setInventory] = useState({Coffee})
+  const [sortType, setSortType] = useState("normal")
 
-  useEffect(() => {
-    total();
-  }, [cart]);
-
-  const total = () => {
-    let totalVal = 0;
-    for (let i = 0; i < cart.length; i++) {
-      totalVal += cart[i].price12;
-    }
-    setCartTotal(totalVal);
-  };
+  const cartTotal = cart.reduce((total, { price12 = 0 }) => total + price12, 0);
 
   const addToCart = (item) => {
 
     setCart((currentCart) => [...currentCart, item]);
-    console.log(`
-    Cart total is ${cartTotal}
-    Items in Cart : ${cart}
-    `)
   }
 
   const removeFromCart = (item) => {
@@ -61,17 +50,37 @@ function App() {
 
   const amountOfItems = (id) => cart.filter((item) => item.id === id).length;
 
-  // const listItemsToBuy = () => items.map((item) => (
-  //   <div key={item.id}>
-  //     {`${item.name}: $${item.price}`}
-      
-  //   </div>
-  // ));
+  const onSort = (items, sortType) => {
+    console.log(items);
+    console.log(sortType);
 
-  const listItemsInCart = () => coffeeList.map((item) => (
+    const copy = [...inventory]// need new array each time fn is called to re-render
+    switch (sortType) {
+      case 'lowest':
+        copy.sort(function (a, b) {
+          return a.price12 - b.price12
+        });
+        break;
+      case 'highest':
+        copy.sort(function (a, b) {
+          return b.price12 - a.price12
+        });
+        break;
+      default:
+        copy.sort(function (a, b) {
+          return a.id - b.id;
+        });
+    }
+    setInventory(copy);
+  }
+
+
+  const listItemsInCart = () => Coffee.map((item) => (
     <div key={item.id}>
-      ({amountOfItems(item.id)} x ${item.price}) {`${item.name}`}
-      <button type="submit" onClick={() => removeFromCart(item)}>Remove</button>
+      <ListGroupItem>
+      <span className="me-2">({amountOfItems(item.id)} x ${item.price12}) {`${item.name}`}</span>
+      <Button type="submit" onClick={() => removeFromCart(item)}>Remove</Button>
+      </ListGroupItem>
     </div>
   ));
 
@@ -82,6 +91,7 @@ function App() {
         listItemsInCart = {listItemsInCart}
         addToCart = {addToCart}
         removeFromCart = {removeFromCart}
+        onSort = {onSort}
         cartTotal = {cartTotal}
         cart = {cart}
       />
@@ -96,9 +106,10 @@ function NavMenu(props) {
   return (
 
     <Router>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container fluid>
-          <Navbar.Brand href="/">
+          <LinkContainer to="/">
+          <Navbar.Brand>
             <img
               src={invLogo}
               width="50"
@@ -108,19 +119,32 @@ function NavMenu(props) {
             />
             <span className="d-inline-block align-middle">Lette's Coffee</span>
           </Navbar.Brand>
+          </LinkContainer>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/About">About</Nav.Link>
-              <Nav.Link href="/Schedule">Roast Schedule</Nav.Link>
-              <Nav.Link href="/Offerings">Offerings</Nav.Link>
-              <Nav.Link href="/Contact">Contact</Nav.Link>
+              <LinkContainer to="/About">
+              <Nav.Link>About</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/Schedule">
+              <Nav.Link>Roast Schedule</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/Offerings">
+              <Nav.Link>Offerings</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/Contact">
+              <Nav.Link>Contact</Nav.Link>
+              </LinkContainer>
             </Nav>
             <Nav>
-              <Nav.Link href="/">Login</Nav.Link>
-              <Nav.Link eventKey={2} href="/Cart" id="cartLink">
-                <FontAwesomeIcon icon={faShoppingCart} href="/Cart" className="me-1" /> ${props.cartTotal}
+              <LinkContainer to="/">
+              <Nav.Link>Login</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/Cart">
+              <Nav.Link eventKey={2} id="cartLink">
+                <FontAwesomeIcon icon={faShoppingCart} className="me-1" /> ${props.cartTotal}
               </Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -146,7 +170,12 @@ function NavMenu(props) {
         <Route
           path="/Offerings"
           element={
-            <Offerings />
+            <Offerings 
+              cart = {props.cart}
+              onSort = {props.onSort}
+              removeFromCart = {props.removeFromCart}
+              addToCart = {props.addToCart}
+              />
           }
         />
         <Route
@@ -160,7 +189,8 @@ function NavMenu(props) {
           element={
             <Cart 
               cartTotal = {props.cartTotal}
-              cart = {props.cart} 
+              cart = {props.cart}
+              listItemsInCart = {props.listItemsInCart}
             />
           }
         />
