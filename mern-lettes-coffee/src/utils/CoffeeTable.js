@@ -15,7 +15,7 @@ export default function CoffeeTable(props) {
             <th>Cupping Score</th>
             <th>Roast Levels</th>
             <th>Tasting Notes</th>
-            {/* NOTE TO SELF: update later with 24oz */}
+            {/* NOTE TO SELF: update later with 24oz. needs to dynamically change based on weight selected*/}
             <th>Price (12oz)</th>
             <th>Weight</th>
             <th>QTY</th>

@@ -1,5 +1,7 @@
 import { ELEVATION_4 } from '@blueprintjs/core/lib/esm/common/classes';
 import coffeeBag from '../images/coffee-bag-transp.png';
+import flavProf from '../images/offerings/kayanza-flavor-profile.jpg'
+import flavProf2 from '../images/offerings/miirabawi-flavor-profile.jpg'
 
 export const Coffee = [
   {
@@ -8,6 +10,7 @@ export const Coffee = [
     country: 'Burundi',
     info: `Balanced sweet and bitter flavors give way to baking spice and accents of crisp apple, raisin, Darjeeling tea, and moderate lemon-like acidity. Darker roasts have a chocolate-cherry flavor note. City to Full City.`,
     pic: `${coffeeBag}`,
+    flavor_profile: `${flavProf}`,
     type: 'Regular',
     price12: 14,
     price24: 23,

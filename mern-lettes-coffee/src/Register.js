@@ -65,7 +65,7 @@ const Register = () => {
             value={firstName}
           />
         </FormGroup>
-        <FormGroup label="LastName" labelFor="lastName">
+        <FormGroup label="Last Name" labelFor="lastName">
           <InputGroup
             id="lastName"
             placeholder="Last Name"

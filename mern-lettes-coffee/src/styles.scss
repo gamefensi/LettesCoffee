@@ -3,12 +3,20 @@
 @import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import 'react-calendar/dist/Calendar.css';
+// @import url(//db.onlinewebfonts.com/c/0e979bd4a3c1c6ac788ed57ac569667f?family=revicons);
+// @font-face {font-family: "revicons"; 
+//   src: url("//db.onlinewebfonts.com/t/0e979bd4a3c1c6ac788ed57ac569667f.eot"); 
+//   src: url("//db.onlinewebfonts.com/t/0e979bd4a3c1c6ac788ed57ac569667f.eot?#iefix") format("embedded-opentype"), 
+//   url("//db.onlinewebfonts.com/t/0e979bd4a3c1c6ac788ed57ac569667f.woff2") format("woff2"), 
+//   url("//db.onlinewebfonts.com/t/0e979bd4a3c1c6ac788ed57ac569667f.woff") format("woff"), 
+//   url("//db.onlinewebfonts.com/t/0e979bd4a3c1c6ac788ed57ac569667f.ttf") format("truetype"), 
+//   url("//db.onlinewebfonts.com/t/0e979bd4a3c1c6ac788ed57ac569667f.svg#revicons") format("svg"); }
 
 ////////// Variables //////////
 
 // light font color (WHEAT)
 $fcl-l: #f5deb3;
-
+$fcl-l2: rgb(255, 222, 145);
 //dark font color (CHARCOAL)
 $fcl-d: #364135;
 
@@ -16,10 +24,14 @@ $fcl-d: #364135;
 $bgcl-l: #a897b9;
 
 //dark bg color (PURPLE)
-$bgcl-d: #47226b;
+$bgcl-d: rgb(80, 69, 85);
+$bgcl-d2:rgb(107, 90, 116);
+$bgcl-d3: #47226b;
+
 
 //light offwhite
 $ofw: #f0f0f0;
+$ofw2: #FFF3ED;
 
 //////////////////////////////
 
@@ -29,7 +41,6 @@ body {
   padding-top: 70px;
 	background-color: #a897b9;
 	color: $fcl-d;
-
 }
 
 .auth-form {
@@ -299,5 +310,64 @@ button, select {
   background-color: $ofw;
   tr td {
     vertical-align: middle;
+  }
+}
+
+//Offerings
+
+#offerings {
+  text-align: center;
+  width: 80%;
+  margin:auto;
+  background-color: $ofw2;
+
+  .list-group-item{
+    background-color: $bgcl-d2;
+    // border:#f5deb3 solid 1px;
+    @include media-breakpoint-down(md){
+      font-size: .8rem;
+    }
+    
+    #productWrapper {
+      display:block;
+      margin-left:auto;
+      margin-right:auto;
+      background-color:rgb(255, 222, 145);
+      border-radius: 10%;
+      img {
+        display:block;
+        margin: auto;
+        object-fit: cover;
+        width: 150px;
+        padding: 20px 0;
+      }
+      @include media-breakpoint-down(xl) {
+        width:50%;
+      }
+    }
+    img:hover {
+      cursor: pointer;
+    }
+    &:nth-child(odd){
+      background-color:$bgcl-d;
+    }
+    h2,h4 {
+      color: rgb(255, 222, 145)
+    }
+    ul li {
+      color:#FFF;
+      list-style: none;
+      strong {
+        text-transform: uppercase;
+        font-size: larger;
+      }
+    }
+    #flavorProfile img {
+      border-radius: 10%;
+      width:50%;
+    }
+    #addSubBtns {
+
+    }
   }
 }

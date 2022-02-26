@@ -28,6 +28,7 @@ const Contact = () => {
       <div style={{ backgroundColor: "rgb(33,37,41)", padding: "20px", marginTop: "50px" }}>
         <h1 style={{ color: "white" }}>Contact Us</h1>
       </div>
+      {/* NOTE TO SELF: add header picture */}
       <Row className="mx-5">
         <Col className="my-4 col-sm-6 col-lg-4">
           <Form

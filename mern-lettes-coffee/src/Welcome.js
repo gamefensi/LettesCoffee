@@ -62,13 +62,13 @@ const Welcome = () => {
     })
   }
 
-  const refetchHandler = () => {
-    // set details to undefined so that spinner will be displayed and
-    // fetchUserDetails will be invoked from useEffect
-    setUserContext(oldValues => {
-      return { ...oldValues, details: undefined }
-    })
-  }
+  // const refetchHandler = () => {
+  //   // set details to undefined so that spinner will be displayed and
+  //   // fetchUserDetails will be invoked from useEffect
+  //   setUserContext(oldValues => {
+  //     return { ...oldValues, details: undefined }
+  //   })
+  // }
 
   return userContext.details === null ? (
     "Error Loading User details"
@@ -97,7 +97,7 @@ const Welcome = () => {
             minimal
             intent="primary"
           />
-          <Button text="Refetch" intent="primary" onClick={refetchHandler} />
+          {/* <Button text="Refetch" intent="primary" onClick={refetchHandler} /> */}
         </div>
       </div>
     </Card>
