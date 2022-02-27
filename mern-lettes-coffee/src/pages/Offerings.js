@@ -1,6 +1,6 @@
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { Input, Label, ListGroup, ListGroupItem } from 'reactstrap';
 import { useState } from "react";
-import { Container, Modal, Row } from 'react-bootstrap';
+import { Button, Form, Modal, Row } from 'react-bootstrap';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Coffee } from '../data/coffeelist';
@@ -10,6 +10,8 @@ export default function Offerings(props) {
   const [show, setShow] = useState(false);
   const [showDesc, setShowDesc] = useState(false)
   const [showImge, setShowImge] = useState({});
+  const [qty, setQty] = useState(0)
+
   const handleClose = () => setShow(false);
   const handleClose2 = () => setShowDesc(false);
   const handleShow = (product) => {
@@ -20,18 +22,19 @@ export default function Offerings(props) {
     setShowDesc(true);
     setShowImge(product);
   }
-  // const handleShow2 = (product) => {
-  //   setShow(true);
-  //   setShowImgeProf(product);
-  // }
 
-  const cart = props.cart;
+  const handleUpdateQty = (operator) => {
+    if (operator === -1) {
+      setQty(qty--)
+    }
+
+  }
 
 
 
   return (
     <div className="my-5 py-5" id="offerings">
-      <h1 className="">Learn more about our coffee</h1>
+      <h1 className="">Roast Menu Offerings</h1>
       <div className="my-5 d-flex justify-content-center align-items-start">
         <p style={{ display: "inline", marginRight: "10px", fontWeight: "bold" }}>Sort Price By: </p>
         <select
@@ -63,7 +66,7 @@ export default function Offerings(props) {
                     marginLeft: "10px",
                   }}
                 >
-                  ${item.price12} <span style={{ color: "rgb(255, 255, 255)" }}>(12oz)</span>
+
                 </span>
               </div>
               <div className="col-xs-12 col-xl-3" id="productWrapper"
@@ -91,12 +94,21 @@ export default function Offerings(props) {
               </div>
               <div className="col-xs-12 col-xl-4">
                 <ul>
-                  <li><strong>roast level:</strong> {item.roast_level}</li>
-                  <li><strong>roast level:</strong> {item.roast_level}</li>
-                  <li><strong>roast level:</strong> {item.roast_level}</li>
+                  <li><strong>Price:</strong> ${item.price12} (12oz)</li>
+                  <li><strong>Country of Origin:</strong> {item.country}</li>
+                  <li>
+                    Weight: 
+                    <Form.Select aria-label="select weight">
+                      <option>Select an option</option>
+                      <option value="12">12oz</option>
+                      <option value="24">24oz</option>
+                    </Form.Select>
+                  </li>
                 </ul>
               </div>
               <div className="addSubBtns col-xs-12 col-xl-2 my-2 ">
+                <Label style={{color:  '#f5deb3'}}>Quantity:</Label>
+                <Input name="qty" value={item.cartQty} disabled style={{width:"35px", marginLeft: "auto", marginRight: "auto", marginBottom: "20px"}}> </Input>
                 <button
                   id="addBtn"
                   type="button"
@@ -120,6 +132,13 @@ export default function Offerings(props) {
                     className="fas fa-sm"
                   />
                 </button>
+                <Button
+                  onClick={() => props.addToCart(item, item.cartQty)}
+                  variant="outline-light"
+                  className="my-4"
+                >
+                  Add to Cart
+                </Button>{' '}
               </div>
             </Row>
 
@@ -150,10 +169,11 @@ export default function Offerings(props) {
             src={showImge.flavor_profile}
             width="350"
             alt={showImge.country + showImge.name + " profile"}
-            className="mx-5"
+            className="mx-5 mb-4"
           />
-          <p><strong>Tasting notes:</strong> {showImge.tasting_notes}</p>
-          <p style={{ fontWeight: "bold" }}><span className="text-dark">Ratings:</span> {showImge.rating}/5</p>
+          <p><strong className="text-dark">Roast Levels:</strong> {showImge.roast_level}</p>
+          <p><strong className="text-dark">Cupping Score:</strong> {showImge.cupping_score}</p>
+          <p><strong className="text-dark">Tasting notes:</strong> {showImge.tasting_notes}</p>
         </Modal.Body>
       </Modal>
     </div>

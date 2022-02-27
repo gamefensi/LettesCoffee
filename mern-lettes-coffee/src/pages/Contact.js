@@ -24,31 +24,31 @@ const Contact = () => {
   }
 
   return (
-    <Container fluid>
-      <div style={{ backgroundColor: "rgb(33,37,41)", padding: "20px", marginTop: "50px" }}>
-        <h1 style={{ color: "white" }}>Contact Us</h1>
+    <Container fluid id="contactUs">
+      <div id="contactUsHeader" >
+        <h1 >Contact Us</h1>
       </div>
       {/* NOTE TO SELF: add header picture */}
       <Row className="mx-5">
-        <Col className="my-4 col-sm-6 col-lg-4">
+        <Col className="my-4" xs="12" md="6" id="contactLeft">
+          <h1 className="h2">Send us a Message</h1>
           <Form
-
             action={FORM_ENDPOINT}
             onSubmit={handleSubmit}
             method="POST"
             target="_blank"
           >
-            <h1 className="h2">Send us a Message</h1>
+
             <FormGroup>
-              <Label for="name">Your Name</Label>
+              <Label for="name">Name</Label>
               <Input type="text" placeholder="Your name" name="name" required />
             </FormGroup>
             <FormGroup>
-              <Label for="email">Your Email</Label>
-              <Input type="email" placeholder="Email" name="email" required />
+              <Label for="email">Email</Label>
+              <Input type="email" placeholder="Your email" name="email" required />
             </FormGroup>
             <FormGroup>
-              Your Message
+              <Label for="message">Message</Label>
               <Input type="textarea" placeholder="Your message" name="message" required />
             </FormGroup>
             <div>
@@ -56,7 +56,7 @@ const Contact = () => {
             </div>
           </Form>
         </Col>
-        <Col className="my-4 px-md-5 col-sm-6 col-lg-8">
+        <Col className="my-4 px-md-5" xs="12" md="6">
           <h1 className="h2">Contact Details </h1>
           <p>1-877-GET-CAFE</p>
           <p>info@lettescoffee.com</p>
