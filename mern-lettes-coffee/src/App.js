@@ -4,6 +4,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Offerings from './pages/Offerings';
 import Schedule from './pages/Schedule';
+import Checkout from "./pages/Checkout";
 import Cart from "./pages/Cart";
 import { LoginModal } from "./utils/Modals";
 import { Coffee } from './data/coffeelist';
@@ -205,19 +206,19 @@ function NavMenu(props) {
               <Nav style={{ display: "inline-block" }}>
                 <Row>
                   <Col>
-                {!userContext.details ? (
-                  <Nav.Link href="#" style={{ display: "inline-block",width:"50px" }} onClick={handleShow}>Login</Nav.Link>
-                ) : (
-                  <Nav.Link href="#" onClick={logoutHandler} style={{ display: "inline-block" }}>Logout</Nav.Link>
-                )}
-                </Col>
-                <Col>
-                <LinkContainer to="/Cart" >
-                  <Nav.Link eventKey={2} id="cartLink" style={{display: "inline-block" }}>
-                    <FontAwesomeIcon icon={faShoppingCart} className="me-lg-1" /> ${props.cartTotal}
-                  </Nav.Link>
-                </LinkContainer>
-                </Col>
+                    {!userContext.details ? (
+                      <Nav.Link href="#" style={{ display: "inline-block", width: "50px" }} onClick={handleShow}>Login</Nav.Link>
+                    ) : (
+                      <Nav.Link href="#" onClick={logoutHandler} style={{ display: "inline-block" }}>Logout</Nav.Link>
+                    )}
+                  </Col>
+                  <Col>
+                    <LinkContainer to="/Cart" >
+                      <Nav.Link eventKey={2} id="cartLink" style={{ display: "inline-block" }}>
+                        <FontAwesomeIcon icon={faShoppingCart} className="me-lg-1" /> ${props.cartTotal}
+                      </Nav.Link>
+                    </LinkContainer>
+                  </Col>
                 </Row>
               </Nav>
             </Col>
@@ -243,21 +244,21 @@ function NavMenu(props) {
             <Col lg="3" id="otherNavLinksLG">
               <Nav style={{ display: "inline-block" }}>
                 <Row>
-                <Col lg="5">
-              {!userContext.details ? (
-                <Nav.Link href="#" style={{ display: "inline-block",width:"50px"}} onClick={handleShow}>Login</Nav.Link>
-              ) : (
-                <Nav.Link href="#" onClick={logoutHandler} style={{ display: "inline-block" }}>Logout</Nav.Link>
-              )}
-              </Col>
-              <Col lg="7">
-              <LinkContainer to="/Cart" >
-                <Nav.Link eventKey={2} id="cartLink" style={{display: "inline-block", }}>
-                  <FontAwesomeIcon icon={faShoppingCart} /> ${props.cartTotal}
-                </Nav.Link>
-              </LinkContainer>
-              </Col>
-              </Row>
+                  <Col lg="5">
+                    {!userContext.details ? (
+                      <Nav.Link href="#" style={{ display: "inline-block", width: "50px" }} onClick={handleShow}>Login</Nav.Link>
+                    ) : (
+                      <Nav.Link href="#" onClick={logoutHandler} style={{ display: "inline-block" }}>Logout</Nav.Link>
+                    )}
+                  </Col>
+                  <Col lg="7">
+                    <LinkContainer to="/Cart" >
+                      <Nav.Link eventKey={2} id="cartLink" style={{ display: "inline-block", }}>
+                        <FontAwesomeIcon icon={faShoppingCart} /> ${props.cartTotal}
+                      </Nav.Link>
+                    </LinkContainer>
+                  </Col>
+                </Row>
               </Nav>
             </Col>
           </Row>
@@ -310,6 +311,10 @@ function NavMenu(props) {
                 listItemsInCart={props.listItemsInCart}
               />
             }
+          />
+          <Route
+          path="/Checkout"
+          element={<Checkout />}
           />
           <Route
             path="/"

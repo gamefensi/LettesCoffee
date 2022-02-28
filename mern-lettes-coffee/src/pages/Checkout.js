@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState} from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { Card } from 'react-bootstrap';
-import "bootstrap/dist/css/bootstrap.min.css"
-import './App.css';
 
-function CheckOut() {
+function Checkout() {
   const [login, setLogin] = useState(false); //set up login
   const [data, setData] = useState({}); //set up fb data
   const [picture, setPicture] = useState(''); //set up fb profile image
+
 
   const responseFacebook = (response) => {
     console.log(response);
@@ -33,7 +32,7 @@ function CheckOut() {
               <LoginForm />
               {/**FB Login Button */}
               <FacebookLogin
-                appId="620288089040861"
+                appId="3146630185664482"
                 autoLoad={false}
                 fields="name,email,picture"
                 score="public_profile,user_friends"
@@ -86,4 +85,4 @@ function Home({ fbpic, fbdata }) {
   )
 }
 
-export default CheckOut;
+export default Checkout;

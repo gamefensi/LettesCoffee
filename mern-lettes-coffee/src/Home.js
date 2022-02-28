@@ -97,7 +97,7 @@ export default function Home(props) {
     </div>
   ) : userContext.token ? (
     <Container fluid>
-      <Welcome userContext={userContext} setUserContext={setUserContext}/>
+      <Welcome />
     </Container>
   ) : (
     //display spinner using Loader component
