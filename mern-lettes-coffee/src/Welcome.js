@@ -45,22 +45,6 @@ const Welcome = () => {
     }
   }, [userContext.details, fetchUserDetails])
 
-  const logoutHandler = () => {
-    fetch(process.env.REACT_APP_API_ENDPOINT + "users/logout", {
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userContext.token}`,
-      },
-    }).then(async response => {
-      //set token to null to remove from db & cookie to display login page 
-      setUserContext(oldValues => {
-        return { ...oldValues, details: undefined, token: null }
-      })
-      //save time of logout so we can logout user from all tabs
-      window.localStorage.setItem("logout", Date.now())
-    })
-  }
 
   // const refetchHandler = () => {
   //   // set details to undefined so that spinner will be displayed and

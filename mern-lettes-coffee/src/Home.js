@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import MainCarousel from './utils/Carousel';
-import { Container, Button, Modal, Row, Col } from "react-bootstrap"
+import { Container, Button, Row, Col } from "react-bootstrap"
 import { UserContext } from "./context/UserContext"
 import Welcome from "./Welcome"
 import Loader from "./utils/Loader"

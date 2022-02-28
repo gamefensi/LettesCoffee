@@ -61,7 +61,7 @@ const Contact = () => {
           <h1 className="h2">Contact Details </h1>
           <p>1-877-GET-CAFE</p>
           <p>info@lettescoffee.com</p>
-          <img src={logo} width="400px"></img>
+          <img src={logo} width="400px" alt="marlettes coffee logo"></img>
         </Col>
 
       </Row>

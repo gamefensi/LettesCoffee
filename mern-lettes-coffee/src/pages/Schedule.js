@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import CoffeeTable from '../utils/CoffeeTable';
-import { Col, Container, Form, Row } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
 import { Coffee } from '../data/coffeelist';
 
 
