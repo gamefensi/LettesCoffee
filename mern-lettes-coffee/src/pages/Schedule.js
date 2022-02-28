@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import CoffeeTable from '../utils/CoffeeTable';import { Col, Container, Form, Row } from 'reactstrap';
+import CoffeeTable from '../utils/CoffeeTable';
+import { Col, Container, Form, Row } from 'reactstrap';
 import { Coffee } from '../data/coffeelist';
+
 
 export default function Schedule(props) {
   const [value, onChange] = useState(new Date());
@@ -76,11 +78,14 @@ export default function Schedule(props) {
   return (
     <div id='roastSchedule'>
       <h2 className='h1'>Roast Schedule</h2>
+      <div className="desc-box mt-md-3" style={{ padding: "10px", backgroundColor:"#f5ebff"}}>
+        Please select an upcoming roast date. The table will show which coffees are available for roasting on the selected date.
+      </div>
+
       <Calendar onChange={onChange} value={value} />
       <Container fluid>
       <Row>
         <Col>
-          <Form>
             <CoffeeTable 
                 listItemsInCart = {props.listItemsInCart}
                 addToCart = {props.addToCart}
@@ -89,7 +94,6 @@ export default function Schedule(props) {
                 handleWeight={props.handleWeight}
                 handleCartQty={props.handleCartQty}
             />
-          </Form>
 
         </Col>
 

@@ -5,23 +5,23 @@ import Contact from './pages/Contact';
 import Offerings from './pages/Offerings';
 import Schedule from './pages/Schedule';
 import Cart from "./pages/Cart";
-import { LoginModal, RegisterModal } from "./utils/Modals";
+import { LoginModal } from "./utils/Modals";
 import { Coffee } from './data/coffeelist';
 import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap"
-import {  ListGroupItem } from "reactstrap";
+import { ListGroupItem } from "reactstrap";
 import { LinkContainer } from "react-router-bootstrap"
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './styles.scss';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import invLogo from './images/logo/logo_bw_inverted.png'
-import Login from "./Login";
+import { UserContext } from "./context/UserContext";
 
 
-function App() {
+export function App() {
   AOS.init();
   const [cart, setCart] = useState([])
   const [data, setData] = useState(Coffee);
@@ -106,7 +106,7 @@ function App() {
 
   const listItemsInCart = () => cart.filter(onlyUnique).map((item) => (
     <div key={item.id}>
-      <ListGroupItem style={{width:"70%",padding:"15px 15px"}}>
+      <ListGroupItem style={{ width: "70%", padding: "15px 15px" }}>
         <Row>
           <Col sm="10">
             <span className="me-2">
@@ -162,139 +162,169 @@ function App() {
 
 function NavMenu(props) {
   const [show, setShow] = useState(false);
-
+  const [userContext, setUserContext] = useContext(UserContext);
   const handleShow = () => setShow(true)
+
+  const logoutHandler = () => {
+    fetch(process.env.REACT_APP_API_ENDPOINT + "users/logout", {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userContext.token}`,
+      },
+    }).then(async response => {
+      //set token to null to remove from db & cookie to display login page 
+      setUserContext(oldValues => {
+        return { ...oldValues, details: undefined, token: null }
+      })
+      //save time of logout so we can logout user from all tabs
+      window.localStorage.setItem("logout", Date.now())
+    })
+  }
 
   return (
     <div>
-    <Router>
-      <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ display: "block" }} className="px-lg-2 px-xs-1">
-        <Row>
-          <Col xs="7" lg="3" xxl="2">
-            <LinkContainer to="/">
-              <Navbar.Brand>
-                <img
-                  src={invLogo}
-                  width="50"
-                  height="50"
-                  className="d-inline-block align-middle me-3"
-                  alt="Lette's Coffee logo"
-                />
-                <span className="d-inline-block align-middle">Lette's Coffee</span>
-              </Navbar.Brand>
-            </LinkContainer>
-          </Col>
-          <Col xs="3" lg="3" id="otherNavLinksSM">
-            <Nav style={{ display: "inline-block" }}>
-                <Nav.Link
-                  href="#"
-                  style={{display:"inline-block"}} 
-                  onClick={handleShow}
-                  >
-                    Login
+      <Router>
+        <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ display: "block" }} className="px-lg-2 px-xs-1">
+          <Row>
+            <Col xs="8" lg="3" xxl="2">
+              <LinkContainer to="/">
+                <Navbar.Brand>
+                  <img
+                    src={invLogo}
+                    width="50"
+                    height="50"
+                    className="d-inline-block align-middle me-3"
+                    alt="Lette's Coffee logo"
+                  />
+                  <span className="d-inline-block align-middle">Lette's Coffee</span>
+                </Navbar.Brand>
+              </LinkContainer>
+            </Col>
+            <Col xs="3" id="otherNavLinksSM">
+              <Nav style={{ display: "inline-block" }}>
+                <Row>
+                  <Col>
+                {!userContext.details ? (
+                  <Nav.Link href="#" style={{ display: "inline-block",width:"50px" }} onClick={handleShow}>Login</Nav.Link>
+                ) : (
+                  <Nav.Link href="#" onClick={logoutHandler} style={{ display: "inline-block" }}>Logout</Nav.Link>
+                )}
+                </Col>
+                <Col>
+                <LinkContainer to="/Cart" >
+                  <Nav.Link eventKey={2} id="cartLink" style={{display: "inline-block" }}>
+                    <FontAwesomeIcon icon={faShoppingCart} className="me-lg-1" /> ${props.cartTotal}
                   </Nav.Link>
-
-              <LinkContainer to="/Cart" >
-                <Nav.Link eventKey={2} id="cartLink">
-                  <FontAwesomeIcon icon={faShoppingCart} className="me-lg-1" /> ${props.cartTotal}
-                </Nav.Link>
-              </LinkContainer>
-            </Nav>
-          </Col>
-          <Col lg="7" xxl="8">
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav >
-                <LinkContainer to="/About">
-                  <Nav.Link>About</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/Schedule">
-                  <Nav.Link>Roast Schedule</Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/Offerings">
-                  <Nav.Link>Offerings</Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/Contact">
-                  <Nav.Link>Contact</Nav.Link>
-                </LinkContainer>
+                </Col>
+                </Row>
               </Nav>
-            </Navbar.Collapse>
-          </Col>
-          <Col lg="2" id="otherNavLinksLG">
-            <Nav >
-                <Nav.Link href="#" onClick={handleShow}>Login</Nav.Link>
-              <LinkContainer to="/Cart">
-                <Nav.Link eventKey={2} id="cartLink">
-                  <FontAwesomeIcon icon={faShoppingCart} className="me-1" /> ${props.cartTotal}
+            </Col>
+            <Col className="ps-xs-2 mt-xs-4" lg="7" xxl="7">
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav >
+                  <LinkContainer to="/About">
+                    <Nav.Link>About</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/Schedule">
+                    <Nav.Link>Roast Schedule</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/Offerings">
+                    <Nav.Link>Offerings</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/Contact">
+                    <Nav.Link>Contact</Nav.Link>
+                  </LinkContainer>
+                </Nav>
+              </Navbar.Collapse>
+            </Col>
+            <Col lg="3" id="otherNavLinksLG">
+              <Nav style={{ display: "inline-block" }}>
+                <Row>
+                <Col lg="5">
+              {!userContext.details ? (
+                <Nav.Link href="#" style={{ display: "inline-block",width:"50px"}} onClick={handleShow}>Login</Nav.Link>
+              ) : (
+                <Nav.Link href="#" onClick={logoutHandler} style={{ display: "inline-block" }}>Logout</Nav.Link>
+              )}
+              </Col>
+              <Col lg="7">
+              <LinkContainer to="/Cart" >
+                <Nav.Link eventKey={2} id="cartLink" style={{display: "inline-block", }}>
+                  <FontAwesomeIcon icon={faShoppingCart} /> ${props.cartTotal}
                 </Nav.Link>
               </LinkContainer>
-            </Nav>
-          </Col>
-        </Row>
-      </Navbar>
-      <Routes>
-        <Route
-          path="/About"
-          element={
-            <About />
-          }
-        />
-        <Route
-          path="/Schedule"
-          element={
-            <Schedule
-              listItemsInCart={props.listItemsInCart}
-              addToCart={props.addToCart}
-              removeFromCart={props.removeFromCart}
-              cartTotal={props.cartTotal}
-              handleWeight={props.handleWeight}
-              handleCartQty={props.handleCartQty}
-            />
-          }
-        />
-        <Route
-          path="/Offerings"
-          element={
-            <Offerings
-              cart={props.cart}
-              // onSort = {props.onSort}
-              removeFromCart={props.removeFromCart}
-              addToCart={props.addToCart}
-              handleWeight={props.handleWeight}
-              handleCartQty={props.handleCartQty}
-            />
-          }
-        />
-        <Route
-          path="/Contact"
-          element={
-            <Contact />
-          }
-        />
-        <Route
-          path="/Cart"
-          element={
-            <Cart
-              cartTotal={props.cartTotal}
-              cart={props.cart}
-              listItemsInCart={props.listItemsInCart}
-            />
-          }
-        />
-        <Route
-          path="/"
-          element={
-            <Home 
-              show={show}
-              setShow={setShow}
-            />
-          }
-        />
-      </Routes>
+              </Col>
+              </Row>
+              </Nav>
+            </Col>
+          </Row>
+        </Navbar>
+        <Routes>
+          <Route
+            path="/About"
+            element={
+              <About />
+            }
+          />
+          <Route
+            path="/Schedule"
+            element={
+              <Schedule
+                listItemsInCart={props.listItemsInCart}
+                addToCart={props.addToCart}
+                removeFromCart={props.removeFromCart}
+                cartTotal={props.cartTotal}
+                handleWeight={props.handleWeight}
+                handleCartQty={props.handleCartQty}
+              />
+            }
+          />
+          <Route
+            path="/Offerings"
+            element={
+              <Offerings
+                cart={props.cart}
+                // onSort = {props.onSort}
+                removeFromCart={props.removeFromCart}
+                addToCart={props.addToCart}
+                handleWeight={props.handleWeight}
+                handleCartQty={props.handleCartQty}
+              />
+            }
+          />
+          <Route
+            path="/Contact"
+            element={
+              <Contact />
+            }
+          />
+          <Route
+            path="/Cart"
+            element={
+              <Cart
+                cartTotal={props.cartTotal}
+                cart={props.cart}
+                listItemsInCart={props.listItemsInCart}
+              />
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Home
+                show={show}
+                setShow={setShow}
+              />
+            }
+          />
+        </Routes>
 
-    </Router>
-    <LoginModal setShow={setShow} show={show} />
-    </div>
+      </Router>
+      <LoginModal setShow={setShow} show={show} />
+    </div >
   )
 
 }

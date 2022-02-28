@@ -41,6 +41,9 @@ body {
   @include media-breakpoint-up(xxl) {
     font-size: 1.15rem;
   }
+  @include media-breakpoint-down(lg) {
+    padding-top: 100px;
+  }
 
 }
 

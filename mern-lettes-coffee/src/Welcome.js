@@ -1,4 +1,4 @@
-import { Button, Card } from "@blueprintjs/core"
+import { Card } from "@blueprintjs/core"
 import React, { useCallback, useContext, useEffect } from "react"
 import { UserContext } from "./context/UserContext"
 import Loader from "./utils/Loader"
@@ -75,7 +75,8 @@ const Welcome = () => {
   ) : !userContext.details ? (
     <Loader />
   ) : (
-    <Card className="my-5" elevation="1">
+    <div>
+      <Card className="my-5" elevation="1">
       <div className="user-details">
         <div>
           <p>
@@ -90,17 +91,18 @@ const Welcome = () => {
             Have a seat and stay awhile ☕.
           </p>
         </div>
-        <div className="user-actions">
+        {/* <div className="user-actions">
           <Button
             text="Logout"
             onClick={logoutHandler}
             minimal
             intent="primary"
-          />
+          /> */}
           {/* <Button text="Refetch" intent="primary" onClick={refetchHandler} /> */}
-        </div>
+        {/* </div> */}
       </div>
     </Card>
+    </div>
   )
 }
 
