@@ -452,11 +452,13 @@ select {
 	margin: 50px 0 50px 0;
 	color: rgb(33, 37, 41);
 	padding-bottom: 50px;
+  padding-top: 2px;
+  
 	#contactUsHeader {
-		padding: 20px;
+		padding: 20px 20px 40px 20px;
     margin: 20px 0 0 0;
-    color: $ofw3;
-    background-color: $bgcl-d4;
+    color: #47226b;
+    background-color: #a897b9;
 	}
 	div#contactLeft form {
 		background-color: #fff3ed;
@@ -467,12 +469,12 @@ select {
     background-color: $fcl-d;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     height: 500px;
   }
   .divider {
-    height:60px;
-    background-color:$bgcl-d4;
+    height:40px;
+    background-color:#a897b9;
   }
 }
 
