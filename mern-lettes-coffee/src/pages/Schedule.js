@@ -86,6 +86,8 @@ export default function Schedule(props) {
                 addToCart = {props.addToCart}
                 removeFromCart = {props.removeFromCart}
                 cartTotal = {props.cartTotal}
+                handleWeight={props.handleWeight}
+                handleCartQty={props.handleCartQty}
             />
           </Form>
 

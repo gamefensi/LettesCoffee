@@ -4,7 +4,6 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import 'react-calendar/dist/Calendar.css';
 
-
 ////////// Variables //////////
 
 // light font color (WHEAT)
@@ -13,27 +12,36 @@ $fcl-l2: rgb(255, 222, 145);
 //dark font color (CHARCOAL)
 $fcl-d: #364135;
 
-//light bg color (LIGHT PURPLE)
+//light bg color
 $bgcl-l: #a897b9;
+$bgcl-l2: #baba99;
 
 //dark bg color (PURPLE)
 $bgcl-d: rgb(80, 69, 85);
-$bgcl-d2:rgb(107, 90, 116);
+$bgcl-d2: rgb(107, 90, 116);
 $bgcl-d3: #47226b;
-
+$bgcl-d4: #6d6e44;
 
 //light off-white
 $ofw: #f0f0f0;
-$ofw2: #FFF3ED;
+$ofw2: #fff3ed;
+$ofw3: #f5ebff;
 
 //////////////////////////////
 
 body {
 	margin: 0 auto;
-	max-width: 1600px;
-  padding-top: 70px;
-	background-color: #a897b9;
+	// max-width: 1600px;
+	padding-top: 65px;
+	background-color: $bgcl-l2;
 	color: $fcl-d;
+  @include media-breakpoint-up(xl) {
+    font-size: 1.1rem;
+  }
+  @include media-breakpoint-up(xxl) {
+    font-size: 1.15rem;
+  }
+
 }
 
 .auth-form {
@@ -53,9 +61,23 @@ body {
 	flex-direction: column;
 }
 
-#cartLink:hover {
-  text-decoration: none;
+//Navbar
+
+#otherNavLinksSM {
+  @include media-breakpoint-up(lg) {
+    display:none;
+  }
 }
+#otherNavLinksLG {
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
+}
+#cartLink:hover {
+	text-decoration: none;
+}
+
+
 //Footer
 footer {
 	background: $bgcl-d;
@@ -82,30 +104,30 @@ footer {
 	}
 }
 .desc-box {
-  margin: auto;
-  width: 80%;
-  padding: 100px;
-  background: rgba(139, 152, 164, 0.233) none no-repeat scroll 0 0;
-  text-align: center;
-  @include media-breakpoint-down(md) {
-    width:100%;
-    padding:50px;
-  }
-  @include media-breakpoint-down(sm) {
-    padding:10px;
-  }
-  p {
-    font-size: 1.2rem;
-    line-height: 24pt;
-    @include media-breakpoint-down(md) {
-      font-size:1.1rem;
-      line-height:20pt;
-    }
-    @include media-breakpoint-down(sm) {
-      font-size:1rem;
-      line-height: 18pt;
-    }
-  }
+	margin: auto;
+	width: 80%;
+	padding: 100px;
+	background: rgba(139, 152, 164, 0.233) none no-repeat scroll 0 0;
+	text-align: center;
+	@include media-breakpoint-down(md) {
+		width: 100%;
+		padding: 50px;
+	}
+	@include media-breakpoint-down(sm) {
+		padding: 10px;
+	}
+	p {
+		font-size: 1.2rem;
+		line-height: 24pt;
+		@include media-breakpoint-down(md) {
+			font-size: 1.1rem;
+			line-height: 20pt;
+		}
+		@include media-breakpoint-down(sm) {
+			font-size: 1rem;
+			line-height: 18pt;
+		}
+	}
 }
 
 //About Us
@@ -114,7 +136,6 @@ footer {
 	background-color: $ofw;
 	color: $fcl-d;
 }
-
 
 .timeline {
 	position: relative;
@@ -140,7 +161,7 @@ footer {
 			@include media-breakpoint-up(lg) {
 				min-height: 260px;
 			}
-      
+
 			&:nth-child(odd) {
 				float: left;
 				text-align: right;
@@ -152,8 +173,9 @@ footer {
 					height: 64px;
 					top: 0;
 					right: -34px;
-					background: url('./images/about-us/grow.png') no-repeat scroll 50%;
-          background-size: 50px;
+					background: url('./images/about-us/grow.png') no-repeat
+						scroll 50%;
+					background-size: 50px;
 				}
 				img {
 					position: absolute;
@@ -166,9 +188,9 @@ footer {
 						object-fit: contain;
 						object-position: center left;
 					}
-          @include media-breakpoint-up(md) {
+					@include media-breakpoint-up(md) {
 						max-height: 180px;
-          }
+					}
 				}
 			}
 			&:nth-child(even) {
@@ -182,26 +204,27 @@ footer {
 					height: 64px;
 					top: 0;
 					left: -31px;
-					background: url('./images/about-us/grow.png') no-repeat scroll 50%;
-          background-size: 50px;
-        }
+					background: url('./images/about-us/grow.png') no-repeat
+						scroll 50%;
+					background-size: 50px;
+				}
 				img {
 					position: absolute;
 					top: 0;
 					right: 105%;
 					margin: 0;
 					padding: 8px 16px;
-          @include media-breakpoint-up(xl) {
+					@include media-breakpoint-up(xl) {
 						max-height: 300px;
-          }
+					}
 					@include media-breakpoint-up(lg) {
 						max-height: 260px;
 						object-fit: contain;
 						object-position: center right;
 					}
-          @include media-breakpoint-up(md) {
+					@include media-breakpoint-up(md) {
 						max-height: 180px;
-          }
+					}
 				}
 			}
 			.content {
@@ -250,7 +273,7 @@ footer {
 					object-position: center center;
 					right: 0;
 					z-index: -1;
-					opacity: .8;
+					opacity: 0.8;
 					padding: 0;
 				}
 			}
@@ -263,121 +286,200 @@ footer {
 
 //react calendar
 #roastSchedule {
-
-  h2.h1 {
-    text-align: center;
-    margin-top: 50px;
-  }
-
+	h2.h1 {
+		text-align: center;
+		margin-top: 50px;
+	}
 }
 .react-calendar {
-  margin: auto;
-  margin-top: 50px;
-  margin-bottom: 100px;
-  padding:50px;
-  background-color:$ofw;
-  width:100%;
-  @include media-breakpoint-up(md) {
-    width: 80%;
-  }
-  @include media-breakpoint-up(lg) {
-    width: 60%;
-  }
-  @include media-breakpoint-up(xl) {
-    width: 50%;
-  }
-  
-  button.react-calendar__navigation__label {
-    span {
-      font-weight: bold;
-      font-size: 18pt
-    }
-  }
+	margin: auto;
+	margin-top: 50px;
+	margin-bottom: 100px;
+	padding: 50px;
+	background-color: $ofw;
+	width: 100%;
+	@include media-breakpoint-up(md) {
+		width: 80%;
+	}
+	@include media-breakpoint-up(lg) {
+		width: 60%;
+	}
+	@include media-breakpoint-up(xl) {
+		width: 50%;
+	}
+
+	button.react-calendar__navigation__label {
+		span {
+			font-weight: bold;
+			font-size: 18pt;
+		}
+	}
 }
-button, select {
-  font-size: 16pt;
+button,
+select {
+	font-size: 16pt;
 }
 //Schedule > Roast Table
 
 #coffeeTable {
-  background-color: $ofw;
-  tr td {
-    vertical-align: middle;
-  }
+	background-color: $ofw;
+	tr td {
+		vertical-align: middle;
+	}
 }
 
 //Offerings
 
 #offerings {
-  text-align: center;
-  width: 80%;
-  margin:auto;
-  background-color: $ofw2;
-
-  .list-group-item{
-    background-color: $bgcl-d2;
-    // border:#f5deb3 solid 1px;
-    @include media-breakpoint-down(md){
-      font-size: .8rem;
-    }
-    
-    #productWrapper {
-      display:block;
-      margin-left:auto;
-      margin-right:auto;
-      background-color:rgb(255, 222, 145);
-      border-radius: 10%;
-      img {
-        display:block;
-        margin: auto;
-        object-fit: cover;
-        width: 150px;
-        padding: 20px 0;
-      }
-      @include media-breakpoint-down(xl) {
-        width:50%;
-      }
-    }
-    img:hover {
-      cursor: pointer;
-    }
-    &:nth-child(odd){
-      background-color:$bgcl-d;
-    }
-    h2,h4 {
-      color: rgb(255, 222, 145)
-    }
-    ul li {
-      color:#FFF;
-      list-style: none;
-      font-size: larger;
-      text-align: left;
-      strong {
-        text-transform: uppercase;
-      }
-    }
-    #flavorProfile img {
-      border-radius: 10%;
-      width:50%;
-    }
-    // #addSubBtns {
-
-    // }
+	width: 80%;
+	margin: auto;
+	background-color: $ofw2;
+  @include media-breakpoint-down(md) {
+    width: 90%
   }
+  @include media-breakpoint-down(sm) {
+    width: 100%
+  }
+  h1 {
+    text-align: center;
+  }
+  .list-group {
+    width: 80%;
+    margin: auto;
+    @include media-breakpoint-down(md) {
+      width: 90%;
+    }
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
+
+    .list-group-item {
+      background-color: $bgcl-d2;
+      display: block;
+      padding: 20px;
+      // border:#f5deb3 solid 1px;
+      @include media-breakpoint-down(md) {
+        font-size: 0.8rem;
+        padding: 10px 5px;
+      }
+  
+      #productWrapper {
+        // display: block;
+        // margin-left: auto;
+        // margin-right: auto;
+        margin-left: 0;
+        background-color: $ofw3;
+        border-radius: 10%;
+        
+        img {
+          display: block;
+          margin: auto;
+          object-fit: cover;
+          // width: 150px;
+          padding: 10px 0;
+        }
+        @include media-breakpoint-down(xl) {
+          width: 50%;
+        }
+      }
+      img:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+      }
+      &:nth-child(odd) {
+        background-color: $bgcl-d;
+      }
+      h2,
+      h3,
+      h4 {
+        color: rgb(255, 222, 145);
+      }
+      ul {
+  
+        li {
+          color: #fff;
+          list-style: none;
+          font-size: larger;
+          text-align: left;
+          strong {
+            text-transform: uppercase;
+          }
+        }
+      }
+      #flavorProfile {
+        color: $fcl-l;
+        span {
+          margin-left: 20px;
+          @include media-breakpoint-down(xl) {
+            display: block;
+            width: 100%;
+            padding: 20px 0;
+            margin-left: 0;
+          }
+        }
+        img {
+          border-radius: 10%;
+          margin-left: 20px;
+          @include media-breakpoint-down(xl) {
+            width: 50%;
+            margin: 0 0 20px 0;
+          }
+        }
+      }
+      #coffeeInfoXL {
+        @include media-breakpoint-down(xl) {
+          display:none;
+        }
+      }
+      #coffeeInfoSX {
+        @include media-breakpoint-up(xl) {
+          display:none;
+        }
+      }
+  
+    }
+  }
+
 }
 
 //Contact Us
 
 #contactUs {
-  background-color: $ofw2;
-  margin: 50px 0 50px 0;
-  color: rgb(33,37,41);
-  padding-bottom: 50px;
-  #contactUsHeader {
-    padding: 20px;
+	background-color: $ofw2;
+	margin: 50px 0 50px 0;
+	color: rgb(33, 37, 41);
+	padding-bottom: 50px;
+	#contactUsHeader {
+		padding: 20px;
+    margin: 20px 0 0 0;
+    color: $ofw3;
+    background-color: $bgcl-d4;
+	}
+	div#contactLeft form {
+		background-color: #fff3ed;
+		padding: 20px;
+	}
+  #contactUsPic {
+    background-image: url('./images/contactUs.jpg');
+    background-color: $fcl-d;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 500px;
   }
-  div#contactLeft form{
-    background-color: #FFF3ED;
-    padding: 20px;
+  .divider {
+    height:60px;
+    background-color:$bgcl-d4;
   }
+}
+
+//Carousel
+
+.carousel-caption {
+  z-index: 10;
+}
+.carousel-item img {
+  // position: absolute;
+  // left: 0;
+  object-fit: cover;
 }

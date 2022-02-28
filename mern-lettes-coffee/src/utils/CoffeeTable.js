@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Table } from 'reactstrap';
 import { Coffee } from '../data/coffeelist';
-
+import { Form } from 'react-bootstrap';
 
 export default function CoffeeTable(props) {
 
@@ -15,9 +15,7 @@ export default function CoffeeTable(props) {
             <th>Cupping Score</th>
             <th>Roast Levels</th>
             <th>Tasting Notes</th>
-            {/* NOTE TO SELF: update later with 24oz. needs to dynamically change based on weight selected*/}
-            <th>Price (12oz)</th>
-            <th>Weight</th>
+            <th>Price</th>
             <th>QTY</th>
           </tr>
         </thead>
@@ -28,6 +26,8 @@ export default function CoffeeTable(props) {
             addToCart = {props.addToCart}
             removeFromCart = {props.removeFromCart}
             cartTotal = {props.cartTotal}  
+            handleWeight={props.handleWeight}
+            handleCartQty={props.handleCartQty}
           />
         </tbody>
       </Table>
@@ -36,7 +36,7 @@ export default function CoffeeTable(props) {
 
 const CreateRows = (props) => {
   return (
-    props.coffeeList.map((item) => (
+    props.coffeeList.map((item, index) => (
     <tr key={item.id} >
       <td>{item.name}</td>
       <td>{item.country}</td>
@@ -44,23 +44,31 @@ const CreateRows = (props) => {
       <td>{item.cupping_score}</td>
       <td>{item.roast_level}</td>
       <td>{item.tasting_notes}</td>
-      <td>${item.price12}</td>
       <td style={{minWidth:'150px'}} className="align-middle">
-        <select id="weight" className='form-select ' name="weight" aria-label='select weight' >
-          <option>Select option</option>
-          <option value="12">12oz</option>
-          <option value="24">24oz</option>
-          <option value="48">48oz</option>
-        </select>
+      <Form.Select name="weight" aria-label="select weight" onChange={props.handleWeight(index)}>
+                      <option value="0">Select an option</option>
+                      <option value="12">12oz (${item.price12})</option>
+                      <option value="24">24oz (${item.price24})</option>
+                    </Form.Select>
       </td>
-      <td style={{maxWidth:'50px'}}>
-        <input id='qty' className='form-control' name='qty' disabled ></input>
+      <td style={{maxWidth:'80px'}}>
+        <input 
+          id='qty' 
+          type='number' 
+          className='form-control' 
+          name='qty' 
+          defaultValue="0"
+          onChange={props.handleCartQty(index)}
+        />
       </td>
       <td>
-        <Button type="button" onClick={() => props.addToCart(item)}>+</Button>
-      </td>
-      <td>
-        <Button type="button" onClick={() => props.removeFromCart(item)}>-</Button>
+      <Button
+                        variant="outline-light"
+                        type="button"
+                        onClick={() => props.addToCart(item,item.cartQty,item.selectedWeight,0)}
+                      >
+                        Add to Cart
+                      </Button>{' '}
       </td>
       
     </tr>

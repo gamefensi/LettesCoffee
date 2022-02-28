@@ -1,26 +1,24 @@
-import { useCallback, useContext, useEffect, useState } from "react"
+import { useCallback, useContext, useEffect, useState } from "react";
 import MainCarousel from './utils/Carousel';
-import {Container,Button,Modal,Row,Col} from "react-bootstrap"
+import { Container, Button, Modal, Row, Col } from "react-bootstrap"
 import { UserContext } from "./context/UserContext"
-import Login from "./Login"
-import Register from "./Register"
 import Welcome from "./Welcome"
 import Loader from "./utils/Loader"
+import { LoginModal, RegisterModal } from "./utils/Modals";
 
 
 
 export default function Home(props) {
   //local state to determine active tab
-  const [userContext, setUserContext] = useContext(UserContext)
-  const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
+  const [userContext, setUserContext] = useContext(UserContext)
 
 
-  const handleClose = () => setShow(false);
-  const handleClose1 = () => setShow1(false);
-  const handleShow = () => setShow(true);
   const handleShow1 = () => setShow1(true);
+  const handleShow = () => props.setShow(true);
 
+
+  const handleClose1 = () => setShow1(false);
 
   //verifyUser enclosed w/in useCallback to avoid redeclaration when component re-renders
   //will be called on page load (useEffect) and will make call to /refreshToken
@@ -71,50 +69,31 @@ export default function Home(props) {
   return userContext.token === null ? (
     <div>
 
-    <MainCarousel />
-    <div class="p-5 mb-4 bg-light rounded-3">
-      <Container fluid className="py-5">
-        <h1 class="display-5 fw-bold">Welcome. Grab a seat and stay awhile.</h1>
-        <p class="col-md-8 fs-4">While you're here, explore our selection of roast-to-order coffees from around the world. Taste fresh, Ethiopia, Colombia, Kenya, Honduras and Indonesia.</p>
-        <Row>
-        <Col className="col-sm-12 col-lg-2">
-          <Button variant="success" className="btn my-4 btn-lg px-5" onClick={handleShow1}>
-          Register
-        </Button>
-          </Col>
-          <Col className="col-sm-12 col-lg-3">
-          <Button variant="primary" className="btn my-4 btn-lg px-5 ms-lg-4" onClick={handleShow}>
-          Sign In
-        </Button>
-          </Col>
+      <MainCarousel />
+      <div className="p-5 mb-4 bg-light rounded-3">
+        <Container fluid className="py-5">
+          <h1 className="display-5 fw-bold">Welcome. Grab a seat and stay awhile.</h1>
+          <p className="col-md-8 fs-4">While you're here, explore our selection of roast-to-order coffees from around the world. Taste fresh, Ethiopia, Colombia, Kenya, Honduras and Indonesia.</p>
+          <Row>
+            <Col className="col-sm-12 col-lg-2">
+              <Button variant="success" className="btn my-4 btn-lg px-5" onClick={handleShow1}>
+                Register
+              </Button>
+            </Col>
+            <Col className="col-sm-12 col-lg-3">
+              <Button variant="primary" className="btn my-4 btn-lg px-5 ms-lg-4" onClick={handleShow}>
+                Sign In
+              </Button>
+            </Col>
 
 
-        </Row>
-      </Container>
-    </div>
+          </Row>
+        </Container>
+      </div>
 
+    <LoginModal setShow={props.setShow} show={props.show}/>
+      <RegisterModal handleClose1={handleClose1} show1={show1}/>
 
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Sign In</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Login />
-      </Modal.Body>
-      <Modal.Footer style={{display:"none"}}>
-      </Modal.Footer>
-    </Modal>
-    <Modal show={show1} onHide={handleClose1}>
-      <Modal.Header closeButton>
-        <Modal.Title>Register</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Register />
-      </Modal.Body>
-      <Modal.Footer style={{display:"none"}}>
-      </Modal.Footer>
-    </Modal>
-          
     </div>
   ) : userContext.token ? (
     <Container fluid>

@@ -91,11 +91,11 @@ class MainCarousel extends Component {
             .custom-tag {
                 max-width: 100%;
                 height: 500px;
-                background: black
+                background: black;
               }
             .carousel-img {
               object-fit: cover;
-              height:500px
+              height:500px;
             }`
           }
         </style>

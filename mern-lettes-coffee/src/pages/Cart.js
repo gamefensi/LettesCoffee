@@ -1,8 +1,9 @@
-import { Button, ListGroup, Container } from "reactstrap"
-import { Link } from "react-router-dom"
+import { ListGroup, Container } from "reactstrap";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 export default function Cart(props) {
-  if (props.listItemsInCart()) {
+  if (props.cartTotal > 0) {
     return (
       <Container className="my-5">
         <ListGroup>
@@ -14,6 +15,7 @@ export default function Cart(props) {
         <Link to="/Checkout">
           <Button
             id="checkOut"
+            variant="success"
             href="/Checkout"
             className="btn btn-primary my-3 me-xs-2 me-lg-3"
           >
@@ -21,14 +23,14 @@ export default function Cart(props) {
           </Button>
         </Link>
         <Link to="/">
-					<Button
-						id="backToHome"
-						href="/"
-						className="btn btn-dark"
-					>
-						Back
-					</Button>
-				</Link>
+          <Button
+            id="backToHome"
+            href="/"
+            className="btn btn-dark"
+          >
+            Back
+          </Button>
+        </Link>
       </Container>
 
     )
@@ -36,7 +38,14 @@ export default function Cart(props) {
     return (
       <div>
         <h1 className="m-5">Nothing in Cart!</h1>
-        <button className="btn btn-dark m-5" href='/' type='button'>Back</button>
+        <Link to="/">
+          <button
+            className="btn btn-dark m-5"
+            type='button'
+          >
+            Back
+          </button>
+        </Link>
       </div>
     )
   }

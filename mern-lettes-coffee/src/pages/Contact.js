@@ -28,7 +28,8 @@ const Contact = () => {
       <div id="contactUsHeader" >
         <h1 >Contact Us</h1>
       </div>
-      {/* NOTE TO SELF: add header picture */}
+      <div id="contactUsPic" />
+      <div className="divider" />
       <Row className="mx-5">
         <Col className="my-4" xs="12" md="6" id="contactLeft">
           <h1 className="h2">Send us a Message</h1>

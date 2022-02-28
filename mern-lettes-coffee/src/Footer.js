@@ -9,7 +9,7 @@ import logo from './images/logo/logo_bw.png';
 export default function Footer(props) {
   return (
     <footer className="footer">
-      <Container className="footer-inner-container">
+      <Container fluid className="footer-inner-container">
         <Row>
           <Col className="col-sm-3 logo">
             <a href="/">
