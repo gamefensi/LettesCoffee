@@ -1,7 +1,7 @@
 
-import { Row, Container, Col } from "reactstrap"
+import { Row, Container, Col,Button } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css";
-import { faFacebook, faTwitter, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from './images/logo/logo_bw.png';
 
@@ -32,15 +32,6 @@ export default function Footer(props) {
               <a href="https://www.facebook.com/groups/marlettescoffee" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faFacebook} />
               </a>
-              <a href="https://twitter.com/EVFY_inc" target="_blank" rel="noreferrer">
-                <FontAwesomeIcon icon={faTwitter} />
-              </a>
-              <a href="https://www.linkedin.com/company/evfy" target="_blank" rel="noreferrer">
-                <FontAwesomeIcon icon={faLinkedin} />
-              </a>
-              <a href="" target="_blank" rel="noreferrer">
-                <FontAwesomeIcon icon={faInstagram} />
-              </a>
             </div>
           </Col>
 
@@ -49,7 +40,7 @@ export default function Footer(props) {
       </Container>
 
       <div className="disclaimer">
-        <p>&copy; 2022 Marlette's Coffee All rights reserved. <a href="#" target="_blank">Privacy Policy</a> and <a href="#" target="_blank">Terms of Use</a></p>
+        <p>&copy; 2022 Marlette's Coffee. All rights reserved. <Button color="link" target="_blank">Privacy Policy</Button>and<Button color="link" target="_blank">Terms of Use</Button></p>
       </div>
     </footer>
   )
