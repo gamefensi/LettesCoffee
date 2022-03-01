@@ -46,7 +46,7 @@ app.use(passport.initialize())
 app.use("/users", userRouter)
 
 app.get('/', function (req, res) {
-    res.send('Hello from Express!')
+    res.send({ status: "success" })
 })
 
 
