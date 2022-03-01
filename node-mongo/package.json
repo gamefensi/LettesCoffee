@@ -11,6 +11,7 @@
     "start": "serve -s build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm dist/bundle.js",
+    "deploy": "git subtree push --prefix node-mongo heroku main",
     "build": "webpack --config webpack.config.js",
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production"
