@@ -8,7 +8,7 @@
     "npm": "6.14.11"
   },
   "scripts": {
-    "start": "serve -s build",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm dist/bundle.js",
     "build": "webpack --config webpack.config.js",
