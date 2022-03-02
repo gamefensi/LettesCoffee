@@ -75,14 +75,13 @@ export default function Home(props) {
           <h1 className="display-5 fw-bold">Welcome. Grab a seat and stay awhile.</h1>
           <p className="col-md-8 fs-4">While you're here, explore our selection of roast-to-order coffees from around the world. Taste fresh, Ethiopia, Colombia, Kenya, Honduras and Indonesia.</p>
           <Row>
-            <Col className="col-sm-6 col-lg-2">
+            <Col sm="2">
               <Button variant="success" className="btn my-4 btn-lg " onClick={handleShow1}>
                 Register
               </Button>
             </Col>
-            <Col className="col-sm-6 col-lg-3">
-              <Button variant="primary" className="btn my-4 btn-lg ms-lg-4 ms-sm-2
-              " onClick={handleShow}>
+            <Col sm="10">
+              <Button variant="primary" className="btn my-4 btn-lg ms-lg-4 ms-sm-2" onClick={handleShow}>
                 Sign In
               </Button>
             </Col>
