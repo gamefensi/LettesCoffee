@@ -70,18 +70,19 @@ export default function Home(props) {
     <div>
 
       <MainCarousel />
-      <div className="p-5 mb-4 bg-light rounded-3">
+      <div className="p-md-5 p-xs-1 mb-4 bg-light rounded-3">
         <Container fluid className="py-5">
           <h1 className="display-5 fw-bold">Welcome. Grab a seat and stay awhile.</h1>
           <p className="col-md-8 fs-4">While you're here, explore our selection of roast-to-order coffees from around the world. Taste fresh, Ethiopia, Colombia, Kenya, Honduras and Indonesia.</p>
           <Row>
-            <Col className="col-sm-12 col-lg-2">
-              <Button variant="success" className="btn my-4 btn-lg px-5" onClick={handleShow1}>
+            <Col className="col-sm-6 col-lg-2">
+              <Button variant="success" className="btn my-4 btn-lg " onClick={handleShow1}>
                 Register
               </Button>
             </Col>
-            <Col className="col-sm-12 col-lg-3">
-              <Button variant="primary" className="btn my-4 btn-lg px-5 ms-lg-4" onClick={handleShow}>
+            <Col className="col-sm-6 col-lg-3">
+              <Button variant="primary" className="btn my-4 btn-lg ms-lg-4 ms-sm-2
+              " onClick={handleShow}>
                 Sign In
               </Button>
             </Col>
