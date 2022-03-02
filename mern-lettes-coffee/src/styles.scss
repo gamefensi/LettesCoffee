@@ -35,6 +35,15 @@ body {
 	padding-top: 65px;
 	background-color: $bgcl-l2;
 	color: $fcl-d;
+  @include media-breakpoint-up(xs) {
+    font-size: .8rem;
+  }
+  @include media-breakpoint-up(sm) {
+    font-size: .9rem;
+  }
+  @include media-breakpoint-up(md) {
+    font-size: 1rem;
+  }
   @include media-breakpoint-up(xl) {
     font-size: 1.1rem;
   }
@@ -66,27 +75,40 @@ body {
 
 //Navbar
 
-#otherNavLinksSM {
+#brandLogoWrapper {
+  @include media-breakpoint-down(lg) {
+    display:none;
+  }
+}
+#collapsedLogo {
   @include media-breakpoint-up(lg) {
     display:none;
   }
 }
-#otherNavLinksLG {
-  @include media-breakpoint-down(lg) {
-    display: none;
+
+#responsive-navbar-nav {
+  a.navbar-brand {
+    @include media-breakpoint-up(lg) {
+      display:none;
+    }
   }
 }
 #cartLink:hover {
 	text-decoration: none;
 }
 
-
+#brandLogo {
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
+}
 //Footer
 footer {
 	background: $bgcl-d;
 	padding-top: 25px;
 	padding-left: 10px;
 	padding-bottom: 25px;
+  display: flex;
 	.footer-inner-container {
 		color: $fcl-l;
 	}
@@ -296,13 +318,16 @@ footer {
 }
 .react-calendar {
 	margin: auto;
-	margin-top: 50px;
-	margin-bottom: 100px;
-	padding: 50px;
+	margin-top: 20px;
+	margin-bottom: 50px;
+	padding: 20px;
 	background-color: $ofw;
 	width: 100%;
 	@include media-breakpoint-up(md) {
 		width: 80%;
+    padding: 50px;
+    margin-bottom: 100px;
+    margin-top: 50px;
 	}
 	@include media-breakpoint-up(lg) {
 		width: 60%;
@@ -314,13 +339,25 @@ footer {
 	button.react-calendar__navigation__label {
 		span {
 			font-weight: bold;
-			font-size: 18pt;
+			font-size: 14pt;
+      @include media-breakpoint-up(md) {
+        font-size: 16pt;
+      }
+      @include media-breakpoint-up(xl) {
+        font-size: 18pt;
+      }
 		}
 	}
 }
 button,
 select {
-	font-size: 16pt;
+	font-size: 12pt;
+  @include media-breakpoint-up(md) {
+    font-size: 14pt;
+  }
+  @include media-breakpoint-up(xl) {
+    font-size: 16pt;
+  }
 }
 //Schedule > Roast Table
 
@@ -329,6 +366,9 @@ select {
 	tr td {
 		vertical-align: middle;
 	}
+  button.addToCart {
+    // @include media
+  }
 }
 
 //Offerings
@@ -353,23 +393,19 @@ select {
       width: 90%;
     }
     @include media-breakpoint-down(sm) {
-      width: 100%;
+      width: 95%;
     }
 
     .list-group-item {
       background-color: $bgcl-d2;
       display: block;
       padding: 20px;
-      // border:#f5deb3 solid 1px;
       @include media-breakpoint-down(md) {
         font-size: 0.8rem;
         padding: 10px 5px;
       }
   
-      #productWrapper {
-        // display: block;
-        // margin-left: auto;
-        // margin-right: auto;
+      .product-wrapper {
         margin-left: 0;
         background-color: $ofw3;
         border-radius: 10%;
@@ -378,12 +414,14 @@ select {
           display: block;
           margin: auto;
           object-fit: cover;
-          // width: 150px;
           padding: 10px 0;
+          // @include media-breakpoint-down(xl) {
+          //   width: 50%;
+          // }
         }
-        @include media-breakpoint-down(xl) {
-          width: 50%;
-        }
+        // @include media-breakpoint-down(xl) {
+        //   width: 50%;
+        // }
       }
       img:hover {
         cursor: pointer;
@@ -398,7 +436,7 @@ select {
         color: rgb(255, 222, 145);
       }
       ul {
-  
+        margin:0;
         li {
           color: #fff;
           list-style: none;
@@ -409,10 +447,11 @@ select {
           }
         }
       }
-      #flavorProfile {
+      .flavor-profile {
         color: $fcl-l;
         span {
           margin-left: 20px;
+          font-size: 14pt;
           @include media-breakpoint-down(xl) {
             display: block;
             width: 100%;
@@ -424,21 +463,21 @@ select {
           border-radius: 10%;
           margin-left: 20px;
           @include media-breakpoint-down(xl) {
-            width: 50%;
+            // width: 50%;
             margin: 0 0 20px 0;
           }
         }
       }
-      #coffeeInfoXL {
-        @include media-breakpoint-down(xl) {
-          display:none;
-        }
-      }
-      #coffeeInfoSX {
-        @include media-breakpoint-up(xl) {
-          display:none;
-        }
-      }
+      // .coffee-info-xl {
+      //   @include media-breakpoint-down(xl) {
+      //     display:none;
+      //   }
+      // }
+      // .coffee-info-xs {
+      //   @include media-breakpoint-up(xl) {
+      //     display:none;
+      //   }
+      // }
   
     }
   }
@@ -484,8 +523,6 @@ select {
   z-index: 10;
 }
 .carousel-item img {
-  // position: absolute;
-  // left: 0;
   object-fit: cover;
 }
 

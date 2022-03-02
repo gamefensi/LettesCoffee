@@ -1,5 +1,5 @@
 
-import { Row, Container, Col,Button } from "reactstrap"
+import { Row, Container, Col, Button } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,7 +13,7 @@ export default function Footer(props) {
         <Row>
           <Col className="col-sm-3 logo">
             <a href="/">
-              <img src={logo} width="150" alt='lettes coffee logo'/>
+              <img src={logo} width="150" alt='lettes coffee logo' />
             </a>
           </Col>
           <Col className="page-links col-sm-3 d-flex align-items-end">
@@ -37,11 +37,14 @@ export default function Footer(props) {
 
 
         </Row>
+        <Row>
+          <div className="disclaimer">
+            <p>&copy; 2022 Marlette's Coffee. All rights reserved. <a color="link" href="https://www.termsfeed.com/live/67ea7814-6fad-4dff-ae23-cf361ca2e84a" target="_blank">Privacy Policy</a> and<Button color="link" target="_blank">Terms of Use</Button></p>
+          </div>
+        </Row>
       </Container>
 
-      <div className="disclaimer">
-        <p>&copy; 2022 Marlette's Coffee. All rights reserved. <Button color="link" target="_blank">Privacy Policy</Button>and<Button color="link" target="_blank">Terms of Use</Button></p>
-      </div>
+
     </footer>
   )
 }

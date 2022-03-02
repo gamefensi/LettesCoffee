@@ -10,7 +10,7 @@ export default function About(props) {
       <h1 className="h1 text-center py-5">Our Story</h1>
       <div className="desc-box">
       <img src={logo} alt="logo-bw" width="100px" className="pb-5"></img>
-        <p><strong>Lette's Coffee</strong> is a micro-roastery based out of Escondido, CA. The hobby-turned-business all started on a stove top skillet in the hands of the husband and wife duo: Marlette and Jesse Vater. As they advanced their skills and machinery, they decided that everyone deserves an Effortless, Fresh, and Divine coffee experience. That's why <strong>Lette's Coffee</strong> only offers a roast-to-order menu with recently harvested selections from across the world.</p>
+        <p><strong>Marlette's Coffee</strong> is a micro-roastery based out of Escondido, CA. The hobby-turned-business all started on a stove top skillet in the hands of the husband and wife duo: Marlette and Jesse Vater. As they advanced their skills and machinery, they decided that everyone deserves an Effortless, Fresh, and Divine coffee experience. That's why <strong>Marlette's Coffee</strong> only offers a roast-to-order menu with recently harvested selections from across the world.</p>
         
       </div>
       <Timeline />

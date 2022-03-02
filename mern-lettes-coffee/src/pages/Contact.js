@@ -60,8 +60,8 @@ const Contact = () => {
         <Col className="my-4 px-md-5" xs="12" md="6">
           <h1 className="h2">Contact Details </h1>
           <p>1-877-GET-CAFE</p>
-          <p>info@lettescoffee.com</p>
-          <img src={logo} width="400px" alt="marlettes coffee logo"></img>
+          <p>info@marlettescoffee.com</p>
+          <img src={logo} width="400px" alt="marlettes coffee logo" className="img-fluid"></img>
         </Col>
 
       </Row>

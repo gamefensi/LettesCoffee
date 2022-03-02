@@ -188,7 +188,7 @@ function NavMenu(props) {
       <Router>
         <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ display: "block" }} className="px-lg-2 px-xs-1">
           <Row>
-            <Col xs="8" lg="3" xxl="2">
+            <Col lg="3" xxl="2" id="brandLogoWrapper">
               <LinkContainer to="/">
                 <Navbar.Brand>
                   <img
@@ -196,33 +196,14 @@ function NavMenu(props) {
                     width="50"
                     height="50"
                     className="d-inline-block align-middle me-3"
-                    alt="Lette's Coffee logo"
+                    alt="Marlette's Coffee logo"
+                    id="brandLogo"
                   />
-                  <span className="d-inline-block align-middle">Lette's Coffee</span>
+                  <span className="d-inline-block align-middle">Marlette's Coffee</span>
                 </Navbar.Brand>
               </LinkContainer>
             </Col>
-            <Col xs="3" id="otherNavLinksSM">
-              <Nav style={{ display: "inline-block" }}>
-                <Row>
-                  <Col>
-                    {!userContext.details ? (
-                      <Nav.Link href="#" style={{ display: "inline-block", width: "50px" }} onClick={handleShow}>Login</Nav.Link>
-                    ) : (
-                      <Nav.Link href="#" onClick={logoutHandler} style={{ display: "inline-block" }}>Logout</Nav.Link>
-                    )}
-                  </Col>
-                  <Col>
-                    <LinkContainer to="/Cart" >
-                      <Nav.Link eventKey={2} id="cartLink" style={{ display: "inline-block" }}>
-                        <FontAwesomeIcon icon={faShoppingCart} className="me-lg-1" /> ${props.cartTotal}
-                      </Nav.Link>
-                    </LinkContainer>
-                  </Col>
-                </Row>
-              </Nav>
-            </Col>
-            <Col className="ps-xs-2 mt-xs-4" lg="7" xxl="7">
+            <Col className="ps-xs-2 mt-xs-4" xs="4" sm="3" lg="6" xxl="7">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav >
@@ -241,17 +222,32 @@ function NavMenu(props) {
                 </Nav>
               </Navbar.Collapse>
             </Col>
-            <Col lg="3" id="otherNavLinksLG">
+            <Col id="collapsedLogo">
+            <LinkContainer to="/">
+                <Navbar.Brand>
+                  <img
+                    src={invLogo}
+                    width="50"
+                    height="50"
+                    className="d-inline-block align-middle me-3"
+                    alt="Marlette's Coffee logo"
+                    id="brandLogo"
+                  />
+                  <span className="d-inline-block align-middle">Marlette's Coffee</span>
+                </Navbar.Brand>
+              </LinkContainer>
+              </Col>
+            <Col xs="5" sm="3" lg="3" id="otherNavLinksLG">
               <Nav style={{ display: "inline-block" }}>
                 <Row>
-                  <Col lg="5">
+                  <Col xs="4">
                     {!userContext.details ? (
-                      <Nav.Link href="#" style={{ display: "inline-block", width: "50px" }} onClick={handleShow}>Login</Nav.Link>
+                      <Nav.Link href="#" style={{ display: "inline-block",}} onClick={handleShow}>Login</Nav.Link>
                     ) : (
                       <Nav.Link href="#" onClick={logoutHandler} style={{ display: "inline-block" }}>Logout</Nav.Link>
                     )}
                   </Col>
-                  <Col lg="7">
+                  <Col xs="8">
                     <LinkContainer to="/Cart" >
                       <Nav.Link eventKey={2} id="cartLink" style={{ display: "inline-block", }}>
                         <FontAwesomeIcon icon={faShoppingCart} /> ${props.cartTotal}
@@ -313,8 +309,8 @@ function NavMenu(props) {
             }
           />
           <Route
-          path="/Checkout"
-          element={<Checkout />}
+            path="/Checkout"
+            element={<Checkout />}
           />
           <Route
             path="/"
