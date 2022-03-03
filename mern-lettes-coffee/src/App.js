@@ -6,7 +6,6 @@ import Offerings from './pages/Offerings';
 import Schedule from './pages/Schedule';
 import Checkout from "./pages/Checkout";
 import Cart from "./pages/Cart";
-import { LoginModal } from "./utils/Modals";
 import { Coffee } from './data/coffeelist';
 import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap"
 import { ListGroupItem } from "reactstrap";
@@ -20,6 +19,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import invLogo from './images/logo/logo_bw_inverted.png'
 import { UserContext } from "./context/UserContext";
+import { LoginModal } from "./utils/Modals";
 
 
 export function App() {
@@ -184,11 +184,10 @@ function NavMenu(props) {
   }
 
   return (
-    <div>
       <Router>
-        <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ display: "block" }} className="px-lg-2 px-xs-1">
-          <Row>
-            <Col lg="3" xxl="2" id="brandLogoWrapper">
+        <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark" className="px-lg-2 px-xs-4">
+          <Row className="px-xs-5" >
+            <Col sm="3" id="brandLogoWrapper">
               <LinkContainer to="/">
                 <Navbar.Brand>
                   <img
@@ -203,7 +202,7 @@ function NavMenu(props) {
                 </Navbar.Brand>
               </LinkContainer>
             </Col>
-            <Col className="ps-xs-2 mt-xs-4" xs="4" sm="3" lg="6" xxl="7">
+            <Col className="mt-xs-4" xs="4" sm="3" lg="7" style={{fontSize:"14pt"}}>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav >
@@ -219,6 +218,11 @@ function NavMenu(props) {
                   <LinkContainer to="/Contact">
                     <Nav.Link>Contact</Nav.Link>
                   </LinkContainer>
+                  {!userContext.details ? (
+                      <Nav.Link href="#" style={{ display: "inline-block"}} onClick={handleShow}>Login</Nav.Link>
+                    ) : (
+                      <Nav.Link href="#" onClick={logoutHandler} style={{ display: "inline-block" }}>Logout</Nav.Link>
+                    )}
                 </Nav>
               </Navbar.Collapse>
             </Col>
@@ -237,17 +241,17 @@ function NavMenu(props) {
                 </Navbar.Brand>
               </LinkContainer>
               </Col>
-            <Col xs="5" sm="3" lg="3" id="otherNavLinksLG">
-              <Nav style={{ display: "inline-block" }}>
-                <Row>
-                  <Col xs="4">
+            <Col xs="12" sm="3" lg="2"id="otherNavLinksLG">
+              <Nav>
+                <Row style={{ fontSize: "14pt"}}>
+                  <Col xs="12" sm="1" id="expandedLogin">
                     {!userContext.details ? (
                       <Nav.Link href="#" style={{ display: "inline-block",}} onClick={handleShow}>Login</Nav.Link>
                     ) : (
                       <Nav.Link href="#" onClick={logoutHandler} style={{ display: "inline-block" }}>Logout</Nav.Link>
                     )}
                   </Col>
-                  <Col xs="8">
+                  <Col xs="12" sm="3">
                     <LinkContainer to="/Cart" >
                       <Nav.Link eventKey={2} id="cartLink" style={{ display: "inline-block", }}>
                         <FontAwesomeIcon icon={faShoppingCart} /> ${props.cartTotal}
@@ -322,10 +326,8 @@ function NavMenu(props) {
             }
           />
         </Routes>
-
+        <LoginModal setShow={setShow} show={show} />
       </Router>
-      <LoginModal setShow={setShow} show={show} />
-    </div >
   )
 
 }

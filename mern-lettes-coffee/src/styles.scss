@@ -1,5 +1,5 @@
 @import '~normalize.css';
-@import '~@blueprintjs/core/lib/css/blueprint.css';
+// @import '~@blueprintjs/core/lib/css/blueprint.css';
 @import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import 'react-calendar/dist/Calendar.css';
@@ -31,12 +31,12 @@ $ofw3: #f5ebff;
 
 body {
 	margin: 0 auto;
-	// max-width: 1600px;
 	padding-top: 65px;
 	background-color: $bgcl-l2;
 	color: $fcl-d;
+
   @include media-breakpoint-up(xs) {
-    font-size: .8rem;
+    font-size: .85rem;
   }
   @include media-breakpoint-up(sm) {
     font-size: .9rem;
@@ -74,7 +74,24 @@ body {
 }
 
 //Navbar
+nav.navbar div.row {
+  @include media-breakpoint-up(sm) {
+    min-width: 576px;
+  }
+  @include media-breakpoint-up(md) {
+    min-width: 768px; 
+  }
+  @include media-breakpoint-up(lg) {
+    min-width: 992px; 
+  }
+  @include media-breakpoint-up(xl) {
+    min-width: 1200px;
+  }
+  @include media-breakpoint-up(xxl) {
+    min-width: 1400px;
+  }
 
+}
 #brandLogoWrapper {
   @include media-breakpoint-down(lg) {
     display:none;
@@ -366,9 +383,6 @@ select {
 	tr td {
 		vertical-align: middle;
 	}
-  button.addToCart {
-    // @include media
-  }
 }
 
 //Offerings
@@ -383,38 +397,64 @@ select {
   @include media-breakpoint-down(sm) {
     width: 100%
   }
+  .cardDesc{
+    @include media-breakpoint-up(sm) {
+      height: 270px;
+      overflow: auto;
+    }
+  }
+  .card-body {  
+
+    input {
+      width:5rem;
+      @include media-breakpoint-down(sm) {
+        width: 100%;
+      }
+    }
+    button{
+      @include media-breakpoint-up(sm) {
+        margin:23px 0 0 0;
+      }
+      @include media-breakpoint-up(xs) {
+        margin:auto;
+        width: 100%;
+      }
+    }
+  }
+
   h1 {
     text-align: center;
   }
-  .list-group {
+  .list-group.lgScrnContent{
     width: 80%;
     margin: auto;
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(lg) {
+      display:none;
+    }
+    @include media-breakpoint-down(xxl) {
       width: 90%;
     }
-    @include media-breakpoint-down(sm) {
-      width: 95%;
-    }
 
-    .list-group-item {
+    .list-group-item  {
       background-color: $bgcl-d2;
       display: block;
       padding: 20px;
-      @include media-breakpoint-down(md) {
-        font-size: 0.8rem;
-        padding: 10px 5px;
+      @include media-breakpoint-down(xl) {
+        padding: 5px;
       }
   
       .product-wrapper {
         margin-left: 0;
         background-color: $ofw3;
         border-radius: 10%;
+        max-width: 340px;
         
         img {
           display: block;
           margin: auto;
           object-fit: cover;
           padding: 10px 0;
+          max-width: 300px;
           // @include media-breakpoint-down(xl) {
           //   width: 50%;
           // }
@@ -426,9 +466,6 @@ select {
       img:hover {
         cursor: pointer;
         transform: scale(1.05);
-      }
-      &:nth-child(odd) {
-        background-color: $bgcl-d;
       }
       h2,
       h3,
@@ -468,20 +505,24 @@ select {
           }
         }
       }
-      // .coffee-info-xl {
-      //   @include media-breakpoint-down(xl) {
-      //     display:none;
-      //   }
-      // }
-      // .coffee-info-xs {
-      //   @include media-breakpoint-up(xl) {
-      //     display:none;
-      //   }
-      // }
-  
+      .orderForm .addToCart {
+        width: 100%;
+        margin-top: 40px;
+      }
     }
   }
-
+  div.container .smScrnContent {
+    @include media-breakpoint-up(lg) {
+      display:none;
+    }
+  }
+  .accordion-button:not(.collapsed) {
+    background-color: #d4bb5988;
+    color: #47226B;
+  }
+  .accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2347226B'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
 }
 
 //Contact Us

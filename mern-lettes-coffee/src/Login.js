@@ -1,4 +1,4 @@
-import { Button, Callout, FormGroup, InputGroup } from "@blueprintjs/core"
+import { Alert, Button, Form } from "react-bootstrap"
 import React, { useContext, useState } from "react"
 import { UserContext } from "./context/UserContext"
 
@@ -52,33 +52,36 @@ const Login = () => {
   }
   return (
     <>
-      {error && <Callout intent="danger">{error}</Callout>}
+      {error && <Alert variant="danger">{error}</Alert>}
       <form onSubmit={formSubmitHandler} className="auth-form">
-        <FormGroup label="Email" labelFor="email">
-          <InputGroup
+        <Form.Group>
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             id="email"
             placeholder="Email"
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
-        </FormGroup>
-        <FormGroup label="Password" labelFor="password">
-          <InputGroup
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             id="password"
             placeholder="Password"
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-        </FormGroup>
+        </Form.Group>
         <Button
-          intent="primary"
+          variant="primary"
           disabled={isSubmitting}
-          text={`${isSubmitting ? "Signing In" : "Sign In"}`}
-          fill
           type="submit"
-        />
+          className="my-4"
+        >
+          {isSubmitting ? "Signing In" : "Sign In"}
+        </Button>
       </form>
     </>
   )
