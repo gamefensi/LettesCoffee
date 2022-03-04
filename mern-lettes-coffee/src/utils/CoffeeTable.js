@@ -5,6 +5,7 @@ import { Form } from 'react-bootstrap';
 
 export default function CoffeeTable(props) {
 
+  
   return (
     <Table striped hover borderless responsive="sm" size="sm" id="coffeeTable">
       <thead>
@@ -21,7 +22,6 @@ export default function CoffeeTable(props) {
       </thead>
       <tbody>
         <CreateRows
-          coffeeList={Coffee}
           listItemsInCart={props.listItemsInCart}
           addToCart={props.addToCart}
           removeFromCart={props.removeFromCart}
@@ -35,8 +35,12 @@ export default function CoffeeTable(props) {
 }
 
 const CreateRows = (props) => {
+
+  const showAlert = () => alert("You must select a weight first!")
+  // const coffeeList = Coffee.map(item => (item.weight = "0")
+
   return (
-    props.coffeeList.map((item, index) => (
+    Coffee.map((item, index) => (
       <tr key={item.id} >
         <td>{item.name}</td>
         <td>{item.country}</td>
@@ -47,8 +51,8 @@ const CreateRows = (props) => {
         <td style={{ minWidth: '150px' }} className="align-middle">
           <Form.Select name="weight" aria-label="select weight" onChange={props.handleWeight(index)}>
             <option value="0">Select an option</option>
-            <option value="12">12oz (${item.price12})</option>
-            <option value="24">24oz (${item.price24})</option>
+            <option value="12">${item.price12} (12oz)</option>
+            <option value="24">${item.price24} (24oz)</option>
           </Form.Select>
         </td>
         <td style={{ maxWidth: '80px' }}>
@@ -67,7 +71,9 @@ const CreateRows = (props) => {
             type="button"
             className="addToCart"
             size="sm"
-            onClick={() => props.addToCart(item, item.cartQty, item.selectedWeight, 0)}
+            onClick={() =>
+              (item.weight === "0")
+                ? showAlert() : props.addToCart(item, item.cartQty, item.selectedWeight, 0)}
           >
             Add to Cart
           </Button>{' '}

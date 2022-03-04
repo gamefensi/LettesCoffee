@@ -34,26 +34,20 @@ body {
 	padding-top: 65px;
 	background-color: $bgcl-l2;
 	color: $fcl-d;
+  font-size: 0.85rem;
 
-  @include media-breakpoint-up(xs) {
-    font-size: .85rem;
-  }
-  @include media-breakpoint-up(sm) {
-    font-size: .9rem;
-  }
-  @include media-breakpoint-up(md) {
-    font-size: 1rem;
-  }
-  @include media-breakpoint-up(xl) {
-    font-size: 1.1rem;
-  }
-  @include media-breakpoint-up(xxl) {
-    font-size: 1.15rem;
-  }
-  @include media-breakpoint-down(lg) {
-    padding-top: 100px;
-  }
-
+	@include media-breakpoint-only(sm) {
+		font-size: 0.9rem;
+	}
+	@include media-breakpoint-only(md) {
+		font-size: 1rem;
+	}
+	@include media-breakpoint-only(xl) {
+		font-size: 1.1rem;
+	}
+	@include media-breakpoint-up(xxl) {
+		font-size: 1.15rem;
+	}
 }
 
 .auth-form {
@@ -75,49 +69,54 @@ body {
 
 //Navbar
 nav.navbar div.row {
-  @include media-breakpoint-up(sm) {
-    min-width: 576px;
-  }
-  @include media-breakpoint-up(md) {
-    min-width: 768px; 
-  }
-  @include media-breakpoint-up(lg) {
-    min-width: 992px; 
-  }
-  @include media-breakpoint-up(xl) {
-    min-width: 1200px;
-  }
-  @include media-breakpoint-up(xxl) {
-    min-width: 1400px;
-  }
-
-}
-#brandLogoWrapper {
-  @include media-breakpoint-down(lg) {
-    display:none;
-  }
-}
-#collapsedLogo {
-  @include media-breakpoint-up(lg) {
-    display:none;
-  }
-}
-
-#responsive-navbar-nav {
-  a.navbar-brand {
-    @include media-breakpoint-up(lg) {
-      display:none;
-    }
-  }
-}
-#cartLink:hover {
-	text-decoration: none;
+	#brandLogoWrapper {
+		@include media-breakpoint-down(lg) {
+			display: none;
+		}
+	}
+	#collapsedLogo {
+		@include media-breakpoint-up(lg) {
+			display: none;
+		}
+	}
+	#responsive-navbar-nav div.navbar-nav {
+		a.loginLogoutSM {
+			@include media-breakpoint-up(lg) {
+				display: none;
+			}
+		}
+	}
+	#otherNavLinksLG {
+		.loginLogoutLG {
+			@include media-breakpoint-down(lg) {
+				display: none;
+			}
+		}
+		#cartLink:hover {
+			text-decoration: none;
+		}
+	}
+	@include media-breakpoint-only(sm) {
+		min-width: 576px;
+	}
+	@include media-breakpoint-only(md) {
+		min-width: 768px;
+	}
+	@include media-breakpoint-only(lg) {
+		min-width: 992px;
+	}
+	@include media-breakpoint-only(xl) {
+		min-width: 1200px;
+	}
+	@include media-breakpoint-only(xxl) {
+		min-width: 1400px;
+	}
 }
 
 #brandLogo {
-  @include media-breakpoint-down(lg) {
-    display: none;
-  }
+	@include media-breakpoint-down(lg) {
+		display: none;
+	}
 }
 //Footer
 footer {
@@ -125,7 +124,7 @@ footer {
 	padding-top: 25px;
 	padding-left: 10px;
 	padding-bottom: 25px;
-  display: flex;
+	display: flex;
 	.footer-inner-container {
 		color: $fcl-l;
 	}
@@ -151,7 +150,7 @@ footer {
 	padding: 100px;
 	background: rgba(139, 152, 164, 0.233) none no-repeat scroll 0 0;
 	text-align: center;
-	@include media-breakpoint-down(md) {
+	@include media-breakpoint-only(md) {
 		width: 100%;
 		padding: 50px;
 	}
@@ -342,9 +341,9 @@ footer {
 	width: 100%;
 	@include media-breakpoint-up(md) {
 		width: 80%;
-    padding: 50px;
-    margin-bottom: 100px;
-    margin-top: 50px;
+		padding: 50px;
+		margin-bottom: 100px;
+		margin-top: 50px;
 	}
 	@include media-breakpoint-up(lg) {
 		width: 60%;
@@ -357,24 +356,24 @@ footer {
 		span {
 			font-weight: bold;
 			font-size: 14pt;
-      @include media-breakpoint-up(md) {
-        font-size: 16pt;
-      }
-      @include media-breakpoint-up(xl) {
-        font-size: 18pt;
-      }
+			@include media-breakpoint-up(md) {
+				font-size: 16pt;
+			}
+			@include media-breakpoint-up(xl) {
+				font-size: 18pt;
+			}
 		}
 	}
 }
 button,
 select {
 	font-size: 12pt;
-  @include media-breakpoint-up(md) {
-    font-size: 14pt;
-  }
-  @include media-breakpoint-up(xl) {
-    font-size: 16pt;
-  }
+	@include media-breakpoint-up(md) {
+		font-size: 14pt;
+	}
+	@include media-breakpoint-up(xl) {
+		font-size: 16pt;
+	}
 }
 //Schedule > Roast Table
 
@@ -391,138 +390,134 @@ select {
 	width: 80%;
 	margin: auto;
 	background-color: $ofw2;
-  @include media-breakpoint-down(md) {
-    width: 90%
-  }
-  @include media-breakpoint-down(sm) {
-    width: 100%
-  }
-  .cardDesc{
-    @include media-breakpoint-up(sm) {
-      height: 270px;
-      overflow: auto;
-    }
-  }
-  .card-body {  
 
-    input {
-      width:5rem;
-      @include media-breakpoint-down(sm) {
-        width: 100%;
-      }
-    }
-    button{
-      @include media-breakpoint-up(sm) {
-        margin:23px 0 0 0;
-      }
-      @include media-breakpoint-up(xs) {
-        margin:auto;
-        width: 100%;
-      }
-    }
-  }
+	@include media-breakpoint-only(md) {
+		width: 90%;
+	}
+	@include media-breakpoint-down(sm) {
+		width: 100%;
+	}
+	.cardDesc {
+    text-align: justify;
+		@include media-breakpoint-up(md) {
+			height: 270px;
+			overflow: auto;
+		}
+	}
+	.card-body {
+		input {
+			width: 5rem;
+			@include media-breakpoint-down(sm) {
+				width: 100%;
+			}
+		}
+		button {
+			@include media-breakpoint-up(sm) {
+				margin: 23px 0 0 0;
+			}
+			@include media-breakpoint-up(xs) {
+				margin: auto;
+				width: 100%;
+			}
+		}
+	}
 
-  h1 {
-    text-align: center;
-  }
-  .list-group.lgScrnContent{
-    width: 80%;
-    margin: auto;
-    @include media-breakpoint-down(lg) {
-      display:none;
-    }
-    @include media-breakpoint-down(xxl) {
-      width: 90%;
-    }
+	h1 {
+		text-align: center;
+	}
+	.list-group.lgScrnContent {
+		width: 80%;
+		margin: auto;
+		@include media-breakpoint-down(lg) {
+			display: none;
+		}
+		@include media-breakpoint-down(xxl) {
+			width: 90%;
+		}
 
-    .list-group-item  {
-      background-color: $bgcl-d2;
-      display: block;
-      padding: 20px;
-      @include media-breakpoint-down(xl) {
-        padding: 5px;
-      }
+		.list-group-item {
+			background-color: $bgcl-d2;
+			display: block;
+			padding: 20px;
+      margin:2px 0;
+			@include media-breakpoint-down(xl) {
+				padding: 5px;
+			}
+
+			.product-wrapper {
+				margin-left: 0;
+				background-color: $ofw3;
+				border-radius: 10%;
+				max-width: 300px;
   
-      .product-wrapper {
-        margin-left: 0;
-        background-color: $ofw3;
-        border-radius: 10%;
-        max-width: 340px;
-        
-        img {
-          display: block;
-          margin: auto;
-          object-fit: cover;
-          padding: 10px 0;
-          max-width: 300px;
-          // @include media-breakpoint-down(xl) {
-          //   width: 50%;
-          // }
-        }
-        // @include media-breakpoint-down(xl) {
-        //   width: 50%;
-        // }
-      }
-      img:hover {
-        cursor: pointer;
-        transform: scale(1.05);
-      }
-      h2,
-      h3,
-      h4 {
-        color: rgb(255, 222, 145);
-      }
-      ul {
-        margin:0;
-        li {
-          color: #fff;
-          list-style: none;
-          font-size: larger;
-          text-align: left;
-          strong {
-            text-transform: uppercase;
-          }
-        }
-      }
-      .flavor-profile {
-        color: $fcl-l;
-        span {
-          margin-left: 20px;
-          font-size: 14pt;
-          @include media-breakpoint-down(xl) {
-            display: block;
-            width: 100%;
-            padding: 20px 0;
-            margin-left: 0;
-          }
-        }
-        img {
-          border-radius: 10%;
-          margin-left: 20px;
-          @include media-breakpoint-down(xl) {
-            // width: 50%;
-            margin: 0 0 20px 0;
-          }
-        }
-      }
-      .orderForm .addToCart {
-        width: 100%;
-        margin-top: 40px;
-      }
-    }
-  }
-  div.container .smScrnContent {
-    @include media-breakpoint-up(lg) {
-      display:none;
-    }
-  }
-  .accordion-button:not(.collapsed) {
-    background-color: #d4bb5988;
-    color: #47226B;
-  }
-  .accordion-button:not(.collapsed)::after {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2347226B'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-}
+				img {
+					display: block;
+					margin: auto;
+					object-fit: cover;
+					padding: 10px 0;
+					max-width: 250px;
+				}
+			}
+			img:hover {
+				cursor: pointer;
+				transform: scale(1.05);
+			}
+			h2,
+			h3,
+			h4 {
+				color: rgb(255, 222, 145);
+			}
+			ul {
+				margin: 0;
+				li {
+					color: #fff;
+					list-style: none;
+					font-size: larger;
+					text-align: left;
+					strong {
+						text-transform: uppercase;
+					}
+				}
+			}
+			.flavor-profile {
+				color: $fcl-l;
+				span {
+					margin-left: 20px;
+					font-size: 14pt;
+					@include media-breakpoint-down(xl) {
+						display: block;
+						width: 100%;
+						padding: 20px 0;
+						margin-left: 0;
+					}
+				}
+				img {
+					border-radius: 10%;
+					margin-left: 20px;
+					@include media-breakpoint-down(xl) {
+						// width: 50%;
+						margin: 0 0 20px 0;
+					}
+				}
+			}
+			.orderForm .addToCart {
+				width: 100%;
+				margin-top: 40px;
+			}
+		}
+	}
+	div.container .smScrnContent {
+		@include media-breakpoint-up(lg) {
+			display: none;
+		}
+	}
+	.accordion-button:not(.collapsed) {
+		background-color: #d4bb5988;
+		color: #47226b;
+	}
+	.accordion-button:not(.collapsed)::after {
+		background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2347226B'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+	}
 }
 
 //Contact Us
@@ -532,42 +527,63 @@ select {
 	margin: 50px 0 50px 0;
 	color: rgb(33, 37, 41);
 	padding-bottom: 50px;
-  padding-top: 2px;
-  
+	padding-top: 2px;
+
 	#contactUsHeader {
 		padding: 20px 20px 40px 20px;
-    margin: 20px 0 0 0;
-    color: #47226b;
-    background-color: #a897b9;
+		margin: 20px 0 0 0;
+		color: #47226b;
+		background-color: #a897b9;
 	}
 	div#contactLeft form {
 		background-color: #fff3ed;
 		padding: 20px;
 	}
-  #contactUsPic {
-    background-image: url('./images/contactUs.jpg');
-    background-color: $fcl-d;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 500px;
-  }
-  .divider {
-    height:40px;
-    background-color:#a897b9;
-  }
+	#contactUsPic {
+		background-image: url('./images/contactUs.jpg');
+		background-color: $fcl-d;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		height: 500px;
+	}
+	.divider {
+		height: 40px;
+		background-color: #a897b9;
+	}
 }
 
 //Carousel
 
 .carousel-caption {
-  z-index: 10;
+	z-index: 10;
 }
-.carousel-item img {
-  object-fit: cover;
+.carousel-item img, .carousel-item {
+  @include media-breakpoint-up(md) {
+    height: 550px;
+  }
+  @include media-breakpoint-only(sm) {
+    height: 500px;
+  }
+  @include media-breakpoint-only(xs) {
+    height: 350px;
+  }
+}
+.carousel-item {
+  // position:relative;
+  img {
+    object-fit: cover;
+    // position: absolute;
+
+  }
 }
 
 //Checkout
 .card-text form {
-  width: 250px;
+	width: 250px;
+}
+
+//Forms
+form div {
+  margin:20px 0;
 }

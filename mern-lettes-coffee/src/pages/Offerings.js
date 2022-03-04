@@ -1,6 +1,6 @@
 import { Input, Label, ListGroup, ListGroupItem } from 'reactstrap';
 import { useState } from "react";
-import { Button, Form, Modal, Row, Col, FormGroup, Card, Container, Accordion, Alert } from 'react-bootstrap';
+import { Button, Form, Modal, Row, Col, FormGroup, Card, Container, Accordion } from 'react-bootstrap';
 // import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Coffee } from '../data/coffeelist';
@@ -9,6 +9,7 @@ import { Coffee } from '../data/coffeelist';
 export default function Offerings(props) {
   const [show, setShow] = useState(false);
   const [showImge, setShowImge] = useState({});
+  const [coffee, setCoffee] = useState(Coffee)
 
 
   const handleClose = () => setShow(false);
@@ -59,12 +60,11 @@ export default function Offerings(props) {
     <div className="my-5 py-5" id="offerings">
       <h1 className="pb-5">Roast Menu Offerings</h1>
       <ListGroup className="lgScrnContent">
-        {Coffee.map((item, index) => (
+        {coffee.map((item, index) => (
           <ListGroupItem key={item.id}>
             <Row style={{
               margin: 'auto'
             }} >
-
               <Col xs="4" lg="5" className="product-wrapper">
                 <img
                   onClick={() => handleShow(item)}
@@ -80,7 +80,7 @@ export default function Offerings(props) {
                     {
                       item.weight === "0" ? 'select a weight' :
                         item.weight === "12" ? '$'+item.price12 :
-                          item.price24
+                          '$'+item.price24
                     }</span>
                   </li>
                   <li><strong>Country of Origin:</strong> {item.country}</li>
@@ -144,7 +144,6 @@ export default function Offerings(props) {
       <Container>
         <Row xs={1} md={2} className="g-4 smScrnContent">
           {Coffee.map((item, index) => (
-            // <Col xs="12" sm="6">
             <Card key={item.id}>
               <Card.Img variant="top" src={item.pic} alt={item.name} style={{ width: "60%", margin: "auto", marginTop: "20px", marginBottom: "20px" }} />
               <Card.Body>
@@ -201,7 +200,6 @@ export default function Offerings(props) {
                 </Row>
               </Card.Body>
             </Card>
-            // </Col>
           ))
           }
         </Row>

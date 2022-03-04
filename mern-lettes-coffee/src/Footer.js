@@ -1,17 +1,17 @@
 
-import { Row, Container, Col, Button } from "reactstrap"
+import { Row, Container, Col } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from './images/logo/logo_bw.png';
 
 
-export default function Footer(props) {
+export default function Footer() {
   return (
     <footer className="footer">
-      <Container fluid className="footer-inner-container">
+      <Container className="footer-inner-container">
         <Row>
-          <Col className="col-sm-3 logo">
+          <Col className="col-sm-3 logo ps-4">
             <a href="/">
               <img src={logo} width="150" alt='lettes coffee logo' />
             </a>
@@ -39,7 +39,7 @@ export default function Footer(props) {
         </Row>
         <Row>
           <div className="disclaimer">
-            <p>&copy; 2022 Marlette's Coffee. All rights reserved. <a color="link" href="https://www.termsfeed.com/live/67ea7814-6fad-4dff-ae23-cf361ca2e84a" target="_blank">Privacy Policy</a> and<Button color="link" target="_blank">Terms of Use</Button></p>
+            <p>&copy; 2022 Marlette's Coffee. All rights reserved. <a color="link" href="https://www.termsfeed.com/live/67ea7814-6fad-4dff-ae23-cf361ca2e84a" rel="noreferrer" target="_blank">Privacy Policy</a> and<a color="link" href="https://www.termsfeed.com/live/18a76d73-d43f-4924-a141-891dd1e15902" rel="noreferrer" target="_blank">Terms of Use</a></p>
           </div>
         </Row>
       </Container>

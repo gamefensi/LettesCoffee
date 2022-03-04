@@ -164,8 +164,9 @@ export function App() {
 function NavMenu(props) {
   const [show, setShow] = useState(false);
   const [userContext, setUserContext] = useContext(UserContext);
-  const handleShow = () => setShow(true)
+  const [logout, setLogout] = useState(false);
 
+  const handleShow = () => setShow(true)
   const logoutHandler = () => {
     fetch(process.env.REACT_APP_API_ENDPOINT + "users/logout", {
       credentials: "include",
@@ -180,8 +181,10 @@ function NavMenu(props) {
       })
       //save time of logout so we can logout user from all tabs
       window.localStorage.setItem("logout", Date.now())
+      setLogout(true)
     })
   }
+
 
   return (
       <Router>
@@ -219,9 +222,9 @@ function NavMenu(props) {
                     <Nav.Link>Contact</Nav.Link>
                   </LinkContainer>
                   {!userContext.details ? (
-                      <Nav.Link href="#" style={{ display: "inline-block"}} onClick={handleShow}>Login</Nav.Link>
+                      <Nav.Link href="#" className="loginLogoutSM" onClick={handleShow}>Login</Nav.Link>
                     ) : (
-                      <Nav.Link href="#" onClick={logoutHandler} style={{ display: "inline-block" }}>Logout</Nav.Link>
+                      <Nav.Link href="#" className="loginLogoutSM"onClick={logoutHandler}>Logout</Nav.Link>
                     )}
                 </Nav>
               </Navbar.Collapse>
@@ -244,7 +247,7 @@ function NavMenu(props) {
             <Col xs="12" sm="3" lg="2"id="otherNavLinksLG">
               <Nav>
                 <Row style={{ fontSize: "14pt"}}>
-                  <Col xs="12" sm="1" id="expandedLogin">
+                  <Col sm="1" className="loginLogoutLG">
                     {!userContext.details ? (
                       <Nav.Link href="#" style={{ display: "inline-block",}} onClick={handleShow}>Login</Nav.Link>
                     ) : (
@@ -322,6 +325,7 @@ function NavMenu(props) {
               <Home
                 show={show}
                 setShow={setShow}
+                logout={logout}
               />
             }
           />

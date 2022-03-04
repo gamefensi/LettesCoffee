@@ -76,7 +76,7 @@ export const Coffee = [
     info: 'One of our first espresso blends offered! Tweaked to perfection, this is a blend of Sumatran and African beans; our own delightful twist on a Moka Java.',
     pic: `${coffeeBag}`,
     flavor_profile: `${flavProf2}`,
-    type: 'Sumatra/Africa',
+    type: 'Blend',
     price12: 16,
     qty12: 0,
     price24: 27,

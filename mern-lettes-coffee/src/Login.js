@@ -2,7 +2,7 @@ import { Alert, Button, Form } from "react-bootstrap"
 import React, { useContext, useState } from "react"
 import { UserContext } from "./context/UserContext"
 
-const Login = () => {
+const Login = (props) => {
   //disables sign-in btn when user already pressed, displaying "Signing In" to inform user of what is happening
   const [isSubmitting, setIsSubmitting] = useState(false)
   //errorState to display message when login fails
@@ -11,13 +11,14 @@ const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [userContext, setUserContext] = useContext(UserContext)
+  
 
   const formSubmitHandler = e => {
     //disable default submission of form
     e.preventDefault()
     setIsSubmitting(true)
     setError("")
-
+    props.setShow(false)
     const genericErrorMessage = "Something went wrong! Please try again later."
 
     //make a POST call to endpoint /users/login with username and password params in req body
