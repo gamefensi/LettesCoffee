@@ -91,10 +91,10 @@ export default function Offerings(props) {
                   <Accordion defaultActiveKey="0">
                     <Accordion.Item eventKey="0">
                       <Accordion.Header>Flavor Profile</Accordion.Header>
-                      <Accordion.Body>
+                      <Accordion.Body style={{fontSize:".9rem"}}>
                         <strong className="text-dark">Roast Levels:</strong> {item.roast_level} <br />
                         <strong className="text-dark">Cupping Score:</strong> {item.cupping_score} <br />
-                        <strong className="text-dark">Tasting notes:</strong> {item.tasting_notes}
+                        <strong className="text-dark">Tasting Notes:</strong> {item.tasting_notes}
                       </Accordion.Body>
                     </Accordion.Item>
                   </Accordion>
@@ -148,11 +148,11 @@ export default function Offerings(props) {
               <Card.Img variant="top" src={item.pic} alt={item.name} style={{ width: "60%", margin: "auto", marginTop: "20px", marginBottom: "20px" }} />
               <Card.Body>
                 <Card.Title>{item.country + " " + item.name}</Card.Title>
-                <Card.Text>
+                <Card.Text style={{fontSize:".9rem"}}>
                   <p className="cardDesc">{item.info}</p>
                   <p><strong className="text-dark">Roast Levels:</strong> {item.roast_level}</p>
                   <p><strong className="text-dark">Cupping Score:</strong> {item.cupping_score}</p>
-                  <p><strong className="text-dark">Tasting notes:</strong> {item.tasting_notes}</p>
+                  <p><strong className="text-dark">Tasting Notes:</strong> {item.tasting_notes}</p>
                   <p><strong className="text-dark">Rating:</strong> {item.rating}</p>
                 </Card.Text>
               </Card.Body>

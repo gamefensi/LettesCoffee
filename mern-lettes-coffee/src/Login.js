@@ -18,7 +18,6 @@ const Login = (props) => {
     e.preventDefault()
     setIsSubmitting(true)
     setError("")
-    props.setShow(false)
     const genericErrorMessage = "Something went wrong! Please try again later."
 
     //make a POST call to endpoint /users/login with username and password params in req body
@@ -44,6 +43,7 @@ const Login = (props) => {
           setUserContext(oldValues => {
             return { ...oldValues, token: data.token }
           })
+          props.setShow(false)
         }
       })
       .catch(error => {

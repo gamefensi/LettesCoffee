@@ -11,12 +11,22 @@ const Register = (props) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [userContext, setUserContext] = useContext(UserContext)
+  const [validated, setValidated] = useState(false);
 
   const formSubmitHandler = e => {
     e.preventDefault()
     setIsSubmitting(true)
     setError("")
-    props.setShow(false)
+
+
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidated(true);
+
+
 
     const genericErrorMessage = "Something went wrong! Please try again later."
 
@@ -36,7 +46,7 @@ const Register = (props) => {
           } else if (response.status === 500) {
             console.log(response)
             const data = await response.json()
-            if(data.message) setError(data.message || genericErrorMessage)
+            if (data.message) setError(data.message || genericErrorMessage)
           } else {
             setError(genericErrorMessage)
           }
@@ -46,53 +56,66 @@ const Register = (props) => {
           setUserContext(oldValues => {
             return { ...oldValues, token: data.token }
           })
+          props.setShow(false)
         }
       })
       .catch(error => {
         setIsSubmitting(false)
         setError(genericErrorMessage)
       })
-  }
+
+  };
 
   return (
     <>
-      {error && <Alert variant="danger">{error}</Alert>}
-      <form onSubmit={formSubmitHandler} className="auth-form">
-        <Form.Group>
+      <form onSubmit={formSubmitHandler} className="auth-form" validated={validated} noValidate>
+        <Form.Group controlId="validationCustom01">
           <Form.Label>First Name</Form.Label>
           <Form.Control
             id="firstName"
-            placeholder="First Name"
+            required
             onChange={e => setFirstName(e.target.value)}
             value={firstName}
           />
+          <Form.Control.Feedback type="invalid">
+            Please enter first name.
+          </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group>
-        <Form.Label>Last Name</Form.Label>
+        <Form.Group controlId="validationCustom0w">
+          <Form.Label>Last Name</Form.Label>
           <Form.Control
             id="lastName"
-            placeholder="Last Name"
+            required
             onChange={e => setLastName(e.target.value)}
             value={lastName}
           />
+          <Form.Control.Feedback type="invalid">
+            Please enter last name.
+          </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group>
-        <Form.Label>Email</Form.Label>
+        <Form.Group controlId="validationCustom03">
+          <Form.Label>Email</Form.Label>
           <Form.Control
             id="email"
-            placeholder="Email"
+            required
             onChange={e => setEmail(e.target.value)}
             value={email}
           />
+          <Form.Control.Feedback type="invalid">
+            Please enter a valid email.
+          </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group>
-        <Form.Label>Password</Form.Label>
+        <Form.Group controlId="validationCustom04">
+          <Form.Label>Password</Form.Label>
           <Form.Control
             id="password"
-            placeholder="Password"
+            required
             onChange={e => setPassword(e.target.value)}
             value={password}
           />
+          <Form.Control.Feedback type="invalid">
+            Please enter a password.
+          </Form.Control.Feedback>
         </Form.Group>
         <Button
           variant="primary"
