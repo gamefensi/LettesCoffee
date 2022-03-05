@@ -3,6 +3,8 @@
 @import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import 'react-calendar/dist/Calendar.css';
+@import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+@import './hide.scss';
 
 ////////// Variables //////////
 
@@ -28,7 +30,8 @@ $ofw2: #fff3ed;
 $ofw3: #f5ebff;
 
 //////////////////////////////
-
+// GENERAL
+//////////////////////////////
 body {
 	margin: 0 auto;
 	padding-top: 65px;
@@ -50,9 +53,7 @@ body {
 	}
 }
 
-.auth-form {
-	margin-top: 10px;
-}
+
 
 .loader {
 	margin: 100px auto;
@@ -379,8 +380,20 @@ select {
 
 #coffeeTable {
 	background-color: $ofw;
-	tr td {
+tr {    
+    td {
 		vertical-align: middle;
+
+    }
+    td.qtyWrapper {
+      @include media-breakpoint-up(lg) {
+        max-width: 50px;
+        padding-right: 5px;
+      }
+      @include media-breakpoint-only(md) {
+        width: 50px;
+      }
+    }
 	}
 }
 
@@ -586,4 +599,7 @@ select {
 //Forms
 form div {
   margin:20px 0;
+}
+.auth-form {
+	margin-top: 10px;
 }

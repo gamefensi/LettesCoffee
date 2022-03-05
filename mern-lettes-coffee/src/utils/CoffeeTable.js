@@ -1,26 +1,28 @@
 import React from 'react';
-import { Button, Table } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { Coffee } from '../data/coffeelist';
 import { Form } from 'react-bootstrap';
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
+
 
 export default function CoffeeTable(props) {
 
   
   return (
-    <Table striped hover borderless responsive="sm" size="sm" id="coffeeTable">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Country</th>
-          <th>Coffee Type</th>
-          <th>Cupping Score</th>
-          <th>Roast Levels</th>
-          <th>Tasting Notes</th>
-          <th>Price</th>
-          <th>QTY</th>
-        </tr>
-      </thead>
-      <tbody>
+    <Table id="coffeeTable">
+      <Thead>
+        <Tr>
+          <Th>Name</Th>
+          <Th>Country</Th>
+          <Th>Cupping Score</Th>
+          <Th>Roast Levels</Th>
+          <Th>Tasting Notes</Th>
+          <Th>Price</Th>
+          <Th>QTY</Th>
+          <Th></Th>
+        </Tr>
+      </Thead>
+      <Tbody>
         <CreateRows
           listItemsInCart={props.listItemsInCart}
           addToCart={props.addToCart}
@@ -29,7 +31,7 @@ export default function CoffeeTable(props) {
           handleWeight={props.handleWeight}
           handleCartQty={props.handleCartQty}
         />
-      </tbody>
+      </Tbody>
     </Table>
   )
 }
@@ -41,21 +43,20 @@ const CreateRows = (props) => {
 
   return (
     Coffee.map((item, index) => (
-      <tr key={item.id} >
-        <td>{item.name}</td>
-        <td>{item.country}</td>
-        <td>{item.type}</td>
-        <td>{item.cupping_score}</td>
-        <td>{item.roast_level}</td>
-        <td>{item.tasting_notes}</td>
-        <td style={{ minWidth: '150px' }} className="align-middle">
+      <Tr key={item.id} >
+        <Td>{item.name}</Td>
+        <Td>{item.country}</Td>
+        <Td>{item.cupping_score}</Td>
+        <Td>{item.roast_level}</Td>
+        <Td>{item.tasting_notes}</Td>
+        <Td style={{ minWidth: '150px' }} className="align-middle">
           <Form.Select name="weight" aria-label="select weight" onChange={props.handleWeight(index)}>
             <option value="0">Select an option</option>
             <option value="12">${item.price12} (12oz)</option>
             <option value="24">${item.price24} (24oz)</option>
           </Form.Select>
-        </td>
-        <td style={{ maxWidth: '80px' }}>
+        </Td>
+        <Td className="qtyWrapper">
           <input
             id='qty'
             type='number'
@@ -64,8 +65,8 @@ const CreateRows = (props) => {
             defaultValue="0"
             onChange={props.handleCartQty(index)}
           />
-        </td>
-        <td>
+        </Td>
+        <Td>
           <Button
             variant="outline-light"
             type="button"
@@ -75,11 +76,11 @@ const CreateRows = (props) => {
               (item.weight === "0")
                 ? showAlert() : props.addToCart(item, item.cartQty, item.selectedWeight, 0)}
           >
-            Add to Cart
+            Add <span className="hideBelowLg">to Cart</span>
           </Button>{' '}
-        </td>
+        </Td>
 
-      </tr>
+      </Tr>
     )))
 
 }

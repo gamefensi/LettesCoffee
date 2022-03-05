@@ -115,7 +115,7 @@ export const Coffee = [
   },
   {
     id:6,
-    name: 'Miirabawi Buna SWP', 	
+    name: 'Miirabawi Buna SWP Decaf', 	
     country: 'Ethiopia',
     info: `Origin becomes easier to pinpoint as the coffee cools, convincing chocolate roast tones backed by a fruited sweetness, complex hints of berry, bell pepper, dried peach, caramel popcorn and sandalwood. City+ to Full City+. Good for espresso. `,
     pic: `${coffeeBag}`,

@@ -83,7 +83,7 @@ export default function Schedule(props) {
       </div>
 
       <Calendar onChange={onChange} value={value} />
-      <Container fluid>
+
       <Row>
         <Col>
             <CoffeeTable 
@@ -98,7 +98,6 @@ export default function Schedule(props) {
         </Col>
 
       </Row>
-      </Container>
     </div>
   );
 }

@@ -1,0 +1,53 @@
+.hideBelowXxl {
+  @include media-breakpoint-down(xxl){
+  display:none;
+  }
+}
+
+.hideAboveXxl {
+  @include media-breakpoint-up(xxl){
+    display:none;
+    }
+} 
+
+.hideBelowXl {
+  @include media-breakpoint-down(xl){
+    display:none;
+    }
+  }
+
+.hideAboveXl {
+  @include media-breakpoint-up(xl){
+    display:none;
+    }
+}
+
+.hideBelowLg {
+  @include media-breakpoint-down(lg){
+    display:none;
+    }}
+
+.hideAboveLg {
+  @include media-breakpoint-up(lg){
+    display:none;
+    }}
+
+.hideBelowMd {
+  @include media-breakpoint-down(md){
+    display:none;
+    }}
+
+.hideAboveMd {
+  @include media-breakpoint-up(md){
+    display:none;
+    }}
+
+.hideBelowSm {
+  @include media-breakpoint-down(sm){
+    display:none;
+    }}
+
+.hideAboveSm {
+  @include media-breakpoint-up(sm){
+    display:none;
+    }}
