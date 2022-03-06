@@ -34,7 +34,7 @@ export function RegisterModal(props) {
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Register show={props.show1} setShow={props.setShow1} />
+          <Register show={props.show1} setShow3={props.setShow1} />
         </Modal.Body>
         <Modal.Footer style={{ display: "none" }}>
         </Modal.Footer>

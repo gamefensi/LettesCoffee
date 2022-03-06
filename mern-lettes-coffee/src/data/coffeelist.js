@@ -20,7 +20,7 @@ export const Coffee = [
     roast_level: 'Light - Medium',
     cupping_score: 88,
     tasting_notes: 'Dark Chocolate, Cherry, Raisin',
-    roastdates:	['2/25/2022', '3/4/2022', '3/11/2022'],
+    roast_dates:	['2/25/2022', '3/4/2022', '3/11/2022'],
     rating:4.5,
     cartQty:0,
     qty: 800,
@@ -42,7 +42,7 @@ export const Coffee = [
     roast_level: 'Light - Medium',
     cupping_score: 88,
     tasting_notes: 'Milk Chocolate, Red Apple, Pie Crust',
-    roastdates:	['3/4/2022', '3/18/2022', '3/25/2022'],
+    roast_dates:	['3/4/2022', '3/18/2022', '3/25/2022'],
     rating:4.6,
     cartQty:0,
     qty: 800
@@ -64,7 +64,7 @@ export const Coffee = [
     roast_level: 'Light - Medium',
     cupping_score: 85,
     tasting_notes: 'Chocolate Malt, Salted Caramel, Red Apple',
-    roastdates:	['2/25/2022', '3/4/2022', '3/11/2022'],
+    roast_dates:	['2/25/2022', '3/4/2022', '3/11/2022'],
     rating:4.0,
     cartQty:0,
     qty: 800
@@ -86,7 +86,7 @@ export const Coffee = [
     roast_level: 'Dark',
     cupping_score: 88,
     tasting_notes: 'Dark Chocolate, Gooseberry, Spice',
-    roastdates:	['3/4/2022', '3/18/2022', '3/25/2022'],
+    roast_dates:	['3/4/2022', '3/18/2022', '3/25/2022'],
     rating:4.8,
     cartQty:0,
     qty: 800
@@ -108,7 +108,7 @@ export const Coffee = [
     roast_level: 'Light - Medium',
     cupping_score: 90,
     tasting_notes: 'Honeysuckle, Gooseberry, Peach',
-    roastdates:	['2/25/2022', '3/4/2022'],
+    roast_dates:	['2/25/2022', '3/4/2022'],
     rating:3.8,
     cartQty:0,
     qty: 800
@@ -130,7 +130,7 @@ export const Coffee = [
     roast_level: 'Medium - Dark',
     cupping_score: 87.5,
     tasting_notes: 'Bittersweet, Peach, Caramel',
-    roastdates:	['2/25/2022', '3/4/2022','3/11/2022'],
+    roast_dates:	['2/25/2022', '3/4/2022','3/11/2022'],
     rating:4.2,
     cartQty:0,
     qty: 800

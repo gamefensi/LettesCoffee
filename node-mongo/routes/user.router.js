@@ -14,17 +14,9 @@ const {
 const { reset } = require("nodemon");
 
 router.post("/signup", (req, res, next) => {
-  //Verify that first name is not empty
 
   const { username, password, firstName, lastName } = req.body;
 
-  if (!firstName) {
-    res.statusCode = 500
-    res.send({
-      name: "FirstNameError",
-      message: "The first name is required",
-    })
-  } else {
     User.register(
       new User({ username: username }),
       password,
@@ -50,7 +42,6 @@ router.post("/signup", (req, res, next) => {
         }
       }
     )
-  }
 
 })
 

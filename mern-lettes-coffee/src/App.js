@@ -7,19 +7,19 @@ import Schedule from './pages/Schedule';
 import Checkout from "./pages/Checkout";
 import Cart from "./pages/Cart";
 import { Coffee } from './data/coffeelist';
-import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap"
-import { ListGroupItem } from "reactstrap";
-import { LinkContainer } from "react-router-bootstrap"
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './styles.scss';
+import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap"
+import { ListGroupItem } from "reactstrap";
+import { LinkContainer } from "react-router-bootstrap"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useContext, useState } from 'react';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import invLogo from './images/logo/logo_bw_inverted.png'
 import { UserContext } from "./context/UserContext";
-import { LoginModal } from "./utils/Modals";
+import { LoginModal, RegisterModal } from "./utils/Modals";
 
 
 export function App() {
@@ -163,10 +163,13 @@ export function App() {
 
 function NavMenu(props) {
   const [show, setShow] = useState(false);
+  const [show1, setShow1] = useState(false);
   const [userContext, setUserContext] = useContext(UserContext);
   const [logout, setLogout] = useState(false);
 
   const handleShow = () => setShow(true)
+  const handleShow1 = () => setShow1(true);
+
   const logoutHandler = () => {
     fetch(process.env.REACT_APP_API_ENDPOINT + "users/logout", {
       credentials: "include",
@@ -205,7 +208,7 @@ function NavMenu(props) {
                 </Navbar.Brand>
               </LinkContainer>
             </Col>
-            <Col className="mt-xs-4" xs="4" sm="3" lg="7" style={{fontSize:"14pt"}}>
+            <Col className="mt-xs-4" xs="4" sm="3" lg="6" style={{fontSize:"14pt"}}>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav >
@@ -222,9 +225,13 @@ function NavMenu(props) {
                     <Nav.Link>Contact</Nav.Link>
                   </LinkContainer>
                   {!userContext.details ? (
-                      <Nav.Link href="#" className="loginLogoutSM" onClick={handleShow}>Login</Nav.Link>
+                      <div className="hideAboveLg">
+                      <Nav.Link href="#" onClick={handleShow}>Login</Nav.Link>
+                       <Nav.Link href="#" onClick={handleShow1}>Register</Nav.Link>
+                      </div>
+                      
                     ) : (
-                      <Nav.Link href="#" className="loginLogoutSM"onClick={logoutHandler}>Logout</Nav.Link>
+                      <Nav.Link href="#" className="hideAboveLg"onClick={logoutHandler}>Logout</Nav.Link>
                     )}
                 </Nav>
               </Navbar.Collapse>
@@ -244,14 +251,18 @@ function NavMenu(props) {
                 </Navbar.Brand>
               </LinkContainer>
               </Col>
-            <Col xs="12" sm="3" lg="2"id="otherNavLinksLG">
+            <Col xs="12" sm="3" lg="3"id="otherNavLinksLG">
               <Nav>
-                <Row style={{ fontSize: "14pt"}}>
-                  <Col sm="1" className="loginLogoutLG">
+                <Row style={{ fontSize: "14pt"}} >
+                  <Col sm="2" className="hideBelowLg ">
                     {!userContext.details ? (
-                      <Nav.Link href="#" style={{ display: "inline-block",}} onClick={handleShow}>Login</Nav.Link>
+                      <div className="d-flex align-items-bottom " style={{verticalAlign:"bottom"}}>
+                      <Nav.Link href="#"  onClick={handleShow} className="align-bottom" style={{display:"inline"}}>Login</Nav.Link>
+                      <span style={{verticalAlign:"middle", margin: "auto 0 auto 0"}}> | </span>
+                       <Nav.Link href="#" onClick={handleShow1}  style={{display:"inline"}}>Register</Nav.Link>
+                      </div>
                     ) : (
-                      <Nav.Link href="#" onClick={logoutHandler} style={{ display: "inline-block" }}>Logout</Nav.Link>
+                      <Nav.Link href="#" onClick={logoutHandler}>Logout</Nav.Link>
                     )}
                   </Col>
                   <Col xs="12" sm="3">
@@ -331,6 +342,7 @@ function NavMenu(props) {
           />
         </Routes>
         <LoginModal setShow={setShow} show={show} />
+        <RegisterModal setShow1={setShow1} show1={show1} />
       </Router>
   )
 

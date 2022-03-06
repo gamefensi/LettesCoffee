@@ -43,7 +43,7 @@ const Welcome = () => {
     if (!userContext.details) {
       fetchUserDetails()
     }
-  }, [userContext.details, fetchUserDetails])
+  }, [userContext.details, fetchUserDetails])  
 
 
   // const refetchHandler = () => {

@@ -18,8 +18,6 @@ export default function Home(props) {
   const handleShow = () => props.setShow(true);
 
 
-  const handleClose1 = () => setShow1(false);
-
   //verifyUser enclosed w/in useCallback to avoid redeclaration when component re-renders
   //will be called on page load (useEffect) and will make call to /refreshToken
   //if success, then saves token from response body to context

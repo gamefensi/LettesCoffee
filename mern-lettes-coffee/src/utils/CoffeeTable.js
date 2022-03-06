@@ -1,14 +1,18 @@
-import React from 'react';
 import { Button } from 'reactstrap';
-import { Coffee } from '../data/coffeelist';
 import { Form } from 'react-bootstrap';
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 
 
 export default function CoffeeTable(props) {
 
   
   return (
+    <div>
+    {props.selectedCoffee.length === 0 ? 
+      (<div>
+        <h1>Please select a date</h1>
+      </div>
+      ) : (
     <Table id="coffeeTable">
       <Thead>
         <Tr>
@@ -30,9 +34,12 @@ export default function CoffeeTable(props) {
           cartTotal={props.cartTotal}
           handleWeight={props.handleWeight}
           handleCartQty={props.handleCartQty}
+          selectedCoffee={props.selectedCoffee}
         />
       </Tbody>
     </Table>
+  )}
+  </div>
   )
 }
 
@@ -41,8 +48,24 @@ const CreateRows = (props) => {
   const showAlert = () => alert("You must select a weight first!")
   // const coffeeList = Coffee.map(item => (item.weight = "0")
 
+  // const addToCart = (newItem, qty, weight, i) => {
+  //   let itemArray = []
+  //   for (i = 0; i < qty; i++) {
+  //     if (weight === "12") {
+  //       newItem.qty12 += 1;
+  //       itemArray.push(newItem)
+  //     } if (weight === "24") {
+  //       newItem.qty24 += 1;
+  //       itemArray.push(newItem)
+  //     }
+
+  //  }
+
+  //   setCart(currentCart => [...currentCart, ...itemArray]);
+  // }
+
   return (
-    Coffee.map((item, index) => (
+    props.selectedCoffee.map((item, index) => (
       <Tr key={item.id} >
         <Td>{item.name}</Td>
         <Td>{item.country}</Td>
@@ -81,6 +104,7 @@ const CreateRows = (props) => {
         </Td>
 
       </Tr>
-    )))
+    ))
+  )
 
 }

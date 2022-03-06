@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import CoffeeTable from '../utils/CoffeeTable';
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import { Coffee } from '../data/coffeelist';
-
 
 export default function Schedule(props) {
   const [value, onChange] = useState(new Date());
+  const [data, setData] = useState([Coffee])
+  const [selected, setSelected] = useState([])
+
   console.log(value)
-  console.log(Coffee[0].roastdates)
+
 
   // Source: http://stackoverflow.com/questions/497790
   var dates = {
@@ -63,22 +65,43 @@ export default function Schedule(props) {
     }
   }
 
-  const handleConvertDates = (array) => {
-    let datesArray = [];
-    return (
-      array.forEach((d) => 
-      datesArray.push(dates.convert(d))
-      ),
-      console.log(datesArray)
-    )
 
+  const handleConvertDates = (array) => {
+    return (
+      array.forEach((d) => {
+        var index = array.indexOf(d);
+        if (index !== -1) {
+          array[index] = dates.convert(d)
+      }})
+    )
   }
 
-  handleConvertDates(Coffee[0].roastdates)
+  const selectedCoffee = () => {
+    let itemArray = []
+    let i = 0
+    // console.log(Coffee.map(x => x.roast_dates))
+    // const convertedCoffees = Coffee.forEach((c) => handleConvertDates(c.roast_dates))
+    // console.log(convertedCoffees)
+
+    const filteredCoffee = Coffee.filter(d => d.roast_dates.some(r => dates.compare(r, value) === 0))
+
+      return setSelected(array => [...itemArray, ...filteredCoffee])
+
+            // for (i = 0; i < Coffee.length; i++) {
+    //   if (convertedCoffees[i].roast_dates.includes(selectedDates)) {
+    //     itemArray.push(convertedCoffees[i])
+    //   }
+    }
+    console.log(selected)
+
+    useEffect(() => {
+      selectedCoffee()
+    },[value])
+
   return (
     <div id='roastSchedule'>
       <h2 className='h1'>Roast Schedule</h2>
-      <div className="desc-box mt-md-3" style={{ padding: "10px", backgroundColor:"#f5ebff"}}>
+      <div className="desc-box mt-md-3" style={{ padding: "10px", backgroundColor: "#f5ebff" }}>
         Please select an upcoming roast date. The table will show which coffees are available for roasting on the selected date.
       </div>
 
@@ -86,14 +109,15 @@ export default function Schedule(props) {
 
       <Row>
         <Col>
-            <CoffeeTable 
-                listItemsInCart = {props.listItemsInCart}
-                addToCart = {props.addToCart}
-                removeFromCart = {props.removeFromCart}
-                cartTotal = {props.cartTotal}
-                handleWeight={props.handleWeight}
-                handleCartQty={props.handleCartQty}
-            />
+          <CoffeeTable
+            listItemsInCart={props.listItemsInCart}
+            addToCart={props.addToCart}
+            removeFromCart={props.removeFromCart}
+            cartTotal={props.cartTotal}
+            handleWeight={props.handleWeight}
+            handleCartQty={props.handleCartQty}
+            selectedCoffee={selected}
+          />
 
         </Col>
 
