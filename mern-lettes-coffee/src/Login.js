@@ -59,7 +59,6 @@ const Login = (props) => {
           <Form.Label>Email</Form.Label>
           <Form.Control
             id="email"
-            placeholder="Email"
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
@@ -69,7 +68,6 @@ const Login = (props) => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             id="password"
-            placeholder="Password"
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
