@@ -4,12 +4,12 @@ import CoffeeTable from '../utils/CoffeeTable';
 import { Col, Row } from 'reactstrap';
 import { Coffee } from '../data/coffeelist';
 
+
+// import {isWithinInterval, Interval, min, max } from 'date-fns';
+
 export default function Schedule(props) {
   const [value, onChange] = useState(new Date());
-  const [data, setData] = useState([Coffee])
   const [selected, setSelected] = useState([])
-
-  console.log(value)
 
 
   // Source: http://stackoverflow.com/questions/497790
@@ -65,38 +65,54 @@ export default function Schedule(props) {
     }
   }
 
-
-  const handleConvertDates = (array) => {
-    return (
-      array.forEach((d) => {
-        var index = array.indexOf(d);
-        if (index !== -1) {
-          array[index] = dates.convert(d)
-      }})
-    )
-  }
-
   const selectedCoffee = () => {
     let itemArray = []
-    let i = 0
-    // console.log(Coffee.map(x => x.roast_dates))
-    // const convertedCoffees = Coffee.forEach((c) => handleConvertDates(c.roast_dates))
-    // console.log(convertedCoffees)
 
     const filteredCoffee = Coffee.filter(d => d.roast_dates.some(r => dates.compare(r, value) === 0))
 
-      return setSelected(array => [...itemArray, ...filteredCoffee])
+    return setSelected(array => [...itemArray, ...filteredCoffee])
 
-            // for (i = 0; i < Coffee.length; i++) {
-    //   if (convertedCoffees[i].roast_dates.includes(selectedDates)) {
-    //     itemArray.push(convertedCoffees[i])
-    //   }
+  }
+  console.log(selected)
+
+  useEffect(() => {
+    selectedCoffee()
+  }, [value])
+
+  // Disable Calendar
+
+
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+
+  const activeDates = Coffee
+    .map(c => c.roast_dates)
+    .reduce((elem1, elem2) => elem1.concat(elem2))
+    .filter(onlyUnique)
+    .map(d => dates.convert(d))
+  console.log(activeDates)
+
+
+  function tileDisabled({ date, view }) {
+
+    // Add class to tiles in month view only
+    if (view === 'month') {
+      // Check if a date React-Calendar wants to check is within any of the ranges
+      return !activeDates.find(dDate => dates.compare(dDate, date) === 0);
     }
-    console.log(selected)
+  }
 
-    useEffect(() => {
-      selectedCoffee()
-    },[value])
+  function tileClassName({ date, view }) {
+    // Add class to tiles in month view only
+    if (view === 'month') {
+      // Check if a date React-Calendar wants to check is on the list of dates to add class to
+      if (activeDates.find(dDate => dates.compare(dDate, date) === 0)) {
+        return 'active-dates';
+      }
+    }
+  }
+
 
   return (
     <div id='roastSchedule'>
@@ -105,7 +121,12 @@ export default function Schedule(props) {
         Please select an upcoming roast date. The table will show which coffees are available for roasting on the selected date.
       </div>
 
-      <Calendar onChange={onChange} value={value} />
+      <Calendar
+        onChange={onChange}
+        value={value}
+        tileDisabled={tileDisabled}
+        tileClassName={tileClassName}
+      />
 
       <Row>
         <Col>

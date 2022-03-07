@@ -1,8 +1,6 @@
 import { Input, Label, ListGroup, ListGroupItem } from 'reactstrap';
 import { useState } from "react";
 import { Button, Form, Modal, Row, Col, FormGroup, Card, Container, Accordion } from 'react-bootstrap';
-// import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Coffee } from '../data/coffeelist';
 // import { UncontrolledTooltip } from 'reactstrap';
 

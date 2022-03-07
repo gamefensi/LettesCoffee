@@ -376,6 +376,22 @@ select {
 		font-size: 16pt;
 	}
 }
+.active-dates {
+  background-color: rgb(0, 247, 255);
+  &:hover {
+    background-color: #fcfc5efd !important;
+    font-weight: bold;
+  }
+  &:active {
+    background-color: #661EB0 !important;
+    color: #fff;
+    font-weight: bold;
+  }
+}
+.react-calendar__tile--active:enabled:focus {
+  background-color: #661EB0;
+}
+
 //Schedule > Roast Table
 
 #coffeeTable {

@@ -10,7 +10,7 @@ export default function CoffeeTable(props) {
     <div>
     {props.selectedCoffee.length === 0 ? 
       (<div>
-        <h1>Please select a date</h1>
+        <h1 style={{textAlign:"center",marginBottom:"100px"}}>Please select an available date</h1>
       </div>
       ) : (
     <Table id="coffeeTable">
