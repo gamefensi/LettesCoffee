@@ -388,6 +388,11 @@ select {
     color: #fff !important;
     font-weight: bold;
   }
+  &:focus {
+    background-color: #661EB0 !important;
+    color: #fff !important;
+    font-weight: bold;
+  }
 }
 .react-calendar__tile--active {
   background-color: #661EB0 !important;
@@ -415,6 +420,14 @@ tr {
 }
 
 //Offerings
+
+.mainPrice {
+  color:rgb(238, 149, 198);
+  // color: greenyellow;
+}
+.altPrice {
+  color:rgb(255, 194, 81);
+}
 
 #offerings {
 	width: 80%;
@@ -502,7 +515,6 @@ tr {
 				li {
 					color: #fff;
 					list-style: none;
-					font-size: larger;
 					text-align: left;
 					strong {
 						text-transform: uppercase;

@@ -72,7 +72,7 @@ export default function Offerings(props) {
               </Col>
               <Col xs="12" lg="4" className="coffee-info-xl my-xs-3 my-xl-1">
                 <ul>
-                  <li className='mb-4'><h3>{item.name}</h3></li>
+                  <li className='mb-3'><h3>{item.name}</h3></li>
                   {/* <li><strong>Price: </strong><span className="item-price">
                     {
                       item.weight === "0" ? 'select a weight' :
@@ -80,24 +80,22 @@ export default function Offerings(props) {
                           '$'+item.price24
                     }</span>
                   </li> */}
-                  <li className='mb-4'><strong>Country of Origin:</strong> {item.country}</li>
+                  
+                  <li className='mb-2'><strong>Country<span className="hideAboveLg"> of Origin</span>:</strong> {item.country}</li>
+                  <li className='mb-2'><strong>Price: </strong>
+                  <span className="item-price"><span className="mainPrice">${item.price12} (12oz)</span> / <span className="altPrice">${item.price24} (24oz)</span></span></li>
+
+                  <li style={{fontSize:"12pt", textAlign:"justify"}}>{item.info}</li>
+
                   {/* // 1.) Modal Option:
                   <li><Button className="my-lg-4 my-xs-2" variant="outline-light" onClick={() => handleShow2(item)}><strong>flavor profile</strong></Button></li> */}
                   {/* // 2.) Popover option */}
                   {/* <li className="d-flex justify-content-center"><Example item={item} /></li> */}
-                  <Accordion defaultActiveKey="0">
-                    <Accordion.Item eventKey="0">
-                      <Accordion.Header>Flavor Profile</Accordion.Header>
-                      <Accordion.Body style={{fontSize:".9rem"}}>
-                        <strong className="text-dark">Roast Levels:</strong> {item.roast_level} <br />
-                        <strong className="text-dark">Cupping Score:</strong> {item.cupping_score} <br />
-                        <strong className="text-dark">Tasting Notes:</strong> {item.tasting_notes}
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
+
                 </ul>
               </Col>
               <Col className="orderForm" xs="12" lg="3">
+                
                 <Form>
                   {/* <FormGroup>
                     <Label for="weight" style={{ color: '#f5deb3' }} className="pt-4">Weight:</Label>
@@ -117,8 +115,16 @@ export default function Offerings(props) {
                         style={{ marginBottom: "20px" }}
                         onChange={props.handleCartQty(index,'+')} />
                     </Col> */}
-                    <strong style={{color:"#fff",textTransform:"uppercase",fontSize:"larger",display:"inline"}}>Price: </strong>
-                    <span className="item-price" style={{display:"inline",color:"#fff"}}>${item.price12} (12oz) / ${item.price24} (24oz)</span>
+                    <Accordion defaultActiveKey="0">
+                    <Accordion.Item eventKey="0">
+                      <Accordion.Header>Flavor Profile</Accordion.Header>
+                      <Accordion.Body style={{fontSize:".9rem"}}>
+                        <strong className="text-dark">Roast Levels:</strong> {item.roast_level} <br />
+                        <strong className="text-dark">Cupping Score:</strong> {item.cupping_score} <br />
+                        <strong className="text-dark">Tasting Notes:</strong> {item.tasting_notes}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  </Accordion>
                       <LinkContainer to="/Schedule" >
                       <Button
                         variant="outline-light"
