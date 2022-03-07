@@ -14,7 +14,7 @@ import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap"
 import { ListGroupItem } from "reactstrap";
 import { LinkContainer } from "react-router-bootstrap"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import invLogo from './images/logo/logo_bw_inverted.png'
@@ -25,7 +25,10 @@ import { LoginModal, RegisterModal } from "./utils/Modals";
 export function App() {
   AOS.init();
   const [cart, setCart] = useState([])
-  const [data, setData] = useState(Coffee);
+  // const [data, setData] = useState(Coffee);
+  const [value, onChange] = useState(new Date());
+  const [selected, setSelected] = useState([])
+  
 
   const cartTotal1 =
     cart.filter(onlyUnique)
@@ -73,6 +76,7 @@ export function App() {
         // ...currentCart.slice(0, indexOfItemToRemove),
         // ...currentCart.slice(indexOfItemToRemove + 1),  
         newCart
+
       );
 
     });
@@ -125,23 +129,126 @@ export function App() {
 
   const handleWeight = index => e => {
 
-    let newArray = [...data]
+    let newArray = [...selected]
     newArray[index].weight = e.target.value;
     newArray[index].selectedWeight = e.target.value
 
-    setData(newArray);
+    setSelected(newArray);
 
   }
 
-  const handleCartQty = index => e => {
+  const handleCartQty = (index, operator) => e => {
 
-    let newArray = [...data]
+    let newArray = [...selected]
+
     newArray[index].cartQty = + e.target.value;
 
-    setData(newArray);
-    console.log(newArray[index].cartQty)
+    setSelected(newArray);
 
   }
+  useEffect(() => {
+    
+  })
+
+  //pass to NavMenu > Schedule > CoffeeTable > CreateRows 
+  //filter coffee by selected dates
+  const selectedCoffee = () => {
+    let itemArray = []
+    const filteredCoffee = Coffee.filter(d => d.roast_dates.some(r => dates.compare(r, value) === 0))
+    return setSelected(array => [...itemArray, ...filteredCoffee])
+
+  }
+
+      // Source: http://stackoverflow.com/questions/497790
+      var dates = {
+        convert: function (d) {
+          // Converts the date in d to a date-object. The input can be:
+          //   a date object: returned without modification
+          //  an array      : Interpreted as [year,month,day]. NOTE: month is 0-11.
+          //   a number     : Interpreted as number of milliseconds
+          //                  since 1 Jan 1970 (a timestamp) 
+          //   a string     : Any format supported by the javascript engine, like
+          //                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
+          //  an object     : Interpreted as an object with year, month and date
+          //                  attributes.  **NOTE** month is 0-11.
+          return (
+            d.constructor === Date ? d :
+              d.constructor === Array ? new Date(d[0], d[1], d[2]) :
+                d.constructor === Number ? new Date(d) :
+                  d.constructor === String ? new Date(d) :
+                    typeof d === "object" ? new Date(d.year, d.month, d.date) :
+                      NaN
+          );
+        },
+        compare: function (a, b) {
+          // Compare two dates (could be of any type supported by the convert
+          // function above) and returns:
+          //  -1 : if a < b
+          //   0 : if a = b
+          //   1 : if a > b
+          // NaN : if a or b is an illegal date
+          // NOTE: The code inside isFinite does an assignment (=).
+          return (
+            isFinite(a = this.convert(a).valueOf()) &&
+              isFinite(b = this.convert(b).valueOf()) ?
+              (a > b) - (a < b) :
+              NaN
+          );
+        },
+        inRange: function (d, start, end) {
+          // Checks if date in d is between dates in start and end.
+          // Returns a boolean or NaN:
+          //    true  : if d is between start and end (inclusive)
+          //    false : if d is before start or after end
+          //    NaN   : if one or more of the dates is illegal.
+          // NOTE: The code inside isFinite does an assignment (=).
+          return (
+            isFinite(d = this.convert(d).valueOf()) &&
+              isFinite(start = this.convert(start).valueOf()) &&
+              isFinite(end = this.convert(end).valueOf()) ?
+              start <= d && d <= end :
+              NaN
+          );
+        }
+      }
+
+  useEffect(() => {
+    selectedCoffee()
+  }, [value])
+
+
+  
+    // Disable Calendar
+  
+    const activeDates = Coffee
+      .map(c => c.roast_dates)
+      .reduce((elem1, elem2) => elem1.concat(elem2))
+      .filter(onlyUnique)
+      .map(d => dates.convert(d))
+    console.log(activeDates)
+  
+  
+    function tileDisabled({ date, view }) {
+  
+      // Add class to tiles in month view only
+      if (view === 'month') {
+        // Check if a date React-Calendar wants to check is within any of the ranges
+        return !activeDates.find(dDate => dates.compare(dDate, date) === 0);
+      }
+    }
+  
+    function tileClassName({ date, view }) {
+      // Add class to tiles in month view only
+      if (view === 'month') {
+        // Check if a date React-Calendar wants to check is on the list of dates to add class to
+        if (activeDates.find(dDate => dates.compare(dDate, date) === 0)) {
+          return 'active-dates';
+        }
+      }
+    }
+  
+
+
   return (
 
     <Container fluid>
@@ -151,9 +258,14 @@ export function App() {
         removeFromCart={removeFromCart}
         handleWeight={handleWeight}
         handleCartQty={handleCartQty}
-        // onSort = {onSort}
         cartTotal={cartTotal}
         cart={cart}
+        onChange={onChange}
+        value={value}
+        tileDisabled={tileDisabled}
+        tileClassName={tileClassName}
+        selected={selected}
+        // onSort = {onSort}
       />
       <Footer />
     </Container>
@@ -294,6 +406,11 @@ function NavMenu(props) {
                 cartTotal={props.cartTotal}
                 handleWeight={props.handleWeight}
                 handleCartQty={props.handleCartQty}
+                onChange={props.onChange}
+                value={props.value}
+                tileDisabled={props.tileDisabled}
+                tileClassName={props.tileClassName}
+                selected={props.selected}
               />
             }
           />

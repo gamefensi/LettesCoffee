@@ -1,4 +1,5 @@
 import { Input, Label, ListGroup, ListGroupItem } from 'reactstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { useState } from "react";
 import { Button, Form, Modal, Row, Col, FormGroup, Card, Container, Accordion } from 'react-bootstrap';
 import { Coffee } from '../data/coffeelist';
@@ -7,8 +8,6 @@ import { Coffee } from '../data/coffeelist';
 export default function Offerings(props) {
   const [show, setShow] = useState(false);
   const [showImge, setShowImge] = useState({});
-  const [coffee, setCoffee] = useState(Coffee)
-
 
   const handleClose = () => setShow(false);
   const handleShow = (product) => {
@@ -16,7 +15,7 @@ export default function Offerings(props) {
     setShowImge(product);
   }
 
-  const showAlert = () => alert("You must select a weight first!")
+  // const showAlert = () => alert("You must select a weight first!")
 
   // const [showDesc, setShowDesc] = useState(false)
   // const handleClose2 = () => setShowDesc(false);
@@ -58,7 +57,7 @@ export default function Offerings(props) {
     <div className="my-5 py-5" id="offerings">
       <h1 className="pb-5">Roast Menu Offerings</h1>
       <ListGroup className="lgScrnContent">
-        {coffee.map((item, index) => (
+        {Coffee.map((item, index) => (
           <ListGroupItem key={item.id}>
             <Row style={{
               margin: 'auto'
@@ -116,20 +115,22 @@ export default function Offerings(props) {
                         type="number"
                         defaultValue={item.cartQty}
                         style={{ marginBottom: "20px" }}
-                        onChange={props.handleCartQty(index)} />
+                        onChange={props.handleCartQty(index,'+')} />
                     </Col>
-                    <Col xl="6">
+                    <Col xl="6" >
+                      <LinkContainer to="/Schedule" className="my-xs-4">
                       <Button
                         variant="outline-light"
                         className="addToCart"
                         type="button"
                         size="sm"
-                        onClick={() =>
-                          (item.weight === "0") 
-                          ? showAlert() : props.addToCart(item, item.cartQty, item.selectedWeight, 0)}
+                        // onClick={() =>
+                        //   (item.weight === "0") 
+                        //   ? showAlert() : props.addToCart(item, item.cartQty, item.selectedWeight, 0)}
                       >
-                        Add to Cart
-                      </Button>{' '}
+                        View Roast Schedule
+                      </Button>
+                      </LinkContainer>
                     </Col>
                   </Row>
                 </Form>
@@ -180,20 +181,22 @@ export default function Offerings(props) {
                       name="qty"
                       type="number"
                       defaultValue={item.cartQty}
-                      onChange={props.handleCartQty(index)} />
+                      onChange={props.handleCartQty(index,'+')} />
                   </Col>
                   <Col xs="12" md="7">
+                    <LinkContainer to="/Schedule">
                     <Button
                       variant="outline-dark"
                       style={{ margin: "23px 0 0 0" }}
                       type="button"
                       size="lg"
-                      onClick={() =>
-                        (item.weight === "0") 
-                        ? showAlert() : props.addToCart(item, item.cartQty, item.selectedWeight, 0)}
+                      // onClick={() =>
+                      //   (item.weight === "0") 
+                      //   ? showAlert() : props.addToCart(item, item.cartQty, item.selectedWeight, 0)}
                     >
-                      Add to Cart
-                    </Button>{' '}
+                      View Roast Schedule
+                    </Button>
+                    </LinkContainer>
                   </Col>
                 </Row>
               </Card.Body>

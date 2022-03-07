@@ -85,8 +85,8 @@ const CreateRows = (props) => {
             type='number'
             className='form-control'
             name='qty'
-            defaultValue="0"
-            onChange={props.handleCartQty(index)}
+            defaultValue={item.cartQty}
+            onChange={props.handleCartQty(index,'+')}
           />
         </Td>
         <Td>
